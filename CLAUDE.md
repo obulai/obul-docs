@@ -52,3 +52,30 @@ sidebar_position: 1
 
 # Content here...
 ```
+
+### Tip Boxes
+
+The docs support tip/warning/info/danger boxes using the following syntax:
+
+```markdown
+:::tip
+Your tip content here...
+:::
+
+:::warning
+Warning content here...
+:::
+
+:::info
+Info content here...
+:::
+
+:::danger
+Danger content here...
+:::
+```
+
+- `:::tip` - Green tip box with 💡 icon
+- `:::warning` - Yellow warning box with ⚠️ icon  
+- `:::info` - Blue info box with ℹ️ icon
+- `:::danger` - Red danger box with 🚨 icon
