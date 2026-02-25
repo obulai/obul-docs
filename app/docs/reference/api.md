@@ -4,8 +4,6 @@ description: Complete reference for the Obul Proxy API
 sidebar_position: 1
 ---
 
-# API Reference
-
 ## Base URL
 
 ```

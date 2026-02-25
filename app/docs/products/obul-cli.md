@@ -5,8 +5,6 @@ sidebar_position: 1
 status: coming-soon
 ---
 
-# Obul CLI
-
 :::status Coming Soon — Q3 2025
 :::
 

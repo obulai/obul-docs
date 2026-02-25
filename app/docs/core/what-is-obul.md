@@ -4,8 +4,6 @@ description: One API key to access the entire x402 agent economy — no wallets,
 sidebar_position: 1
 ---
 
-# What is Obul?
-
 **One API key. The entire x402 economy. Zero wallets.**
 
 Obul is a proxy layer that lets you call any x402-enabled service with nothing more than an API key. We handle the payment proofs, gas management, and protocol negotiation automatically.
@@ -78,17 +76,3 @@ These agents need to pay without human intervention. Without wallet setup. Witho
 - Access the 70M+ transaction x402 economy with HTTP requests
 
 ## The 70M+ Transaction Economy
-
-x402 is the HTTP 402 Payment Required standard. It's how agents pay agents. The ecosystem includes:
-
-- Serverless compute
-- Specialized reasoning APIs
-- On-chain data feeds
-- Memory and storage services
-
-**Obul makes this economy accessible.** Not "crypto infrastructure" you need to learn — just APIs you can call with better tooling.
-
-## Ready?
-
-- [Learn about x402](./x402-primer) — The protocol powering the agent economy
-- [Get started in 5 minutes](../getting-started/quickstart) — Your first x402 API call

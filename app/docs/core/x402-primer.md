@@ -4,8 +4,6 @@ description: The HTTP 402 Payment Required protocol — why developers love it a
 sidebar_position: 2
 ---
 
-# What is x402?
-
 x402 is the **HTTP 402 Payment Required** protocol. It's the standard that makes APIs natively payable — and it's why developers are finally excited about monetizing infrastructure.
 
 ## Why Developers Love x402
@@ -188,8 +186,3 @@ x402 is evolving:
 - **IETF standard** — Formal spec in progress
 
 **The vision:** Every API call is a payment. Every payment is an API call. No distinction.
-
-## Learn More
-
-- [Obul vs x402](./obul-vs-x402) — When to use Obul vs building direct
-- [Quickstart](../getting-started/quickstart) — Make your first x402 call

@@ -4,8 +4,6 @@ description: When to use Obul, when to build raw x402, and how to migrate betwee
 sidebar_position: 4
 ---
 
-# Obul vs x402
-
 **x402** is a protocol standard.  
 **Obul** is a service built on x402.
 
@@ -116,8 +114,3 @@ You'll ship faster, avoid infrastructure headaches, and can always migrate to ra
 x402 is the future of machine-to-machine payments. Obul is the fastest way to get there.
 
 Start with Obul. Scale with x402.
-
-## Next Steps
-
-- [Quickstart](../getting-started/quickstart) — Get running in 5 minutes
-- [API Reference](../reference/api) — Full technical documentation

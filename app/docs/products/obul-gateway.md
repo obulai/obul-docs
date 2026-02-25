@@ -5,8 +5,6 @@ sidebar_position: 3
 status: coming-soon
 ---
 
-# Obul x402 Gateway
-
 :::status Coming Soon — Q4 2025
 :::
 

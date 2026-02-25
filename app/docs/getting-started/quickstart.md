@@ -4,8 +4,6 @@ description: Access the x402 economy in under 5 minutes — one API key, no wall
 sidebar_position: 1
 ---
 
-# Quickstart
-
 Access the x402 agent economy in under 5 minutes.
 
 ## Prerequisites
@@ -128,12 +126,6 @@ Protect yourself from runaway agents:
 4. Set **Monthly Spend Limit** (e.g., $50)
 
 If an agent hits its limit, requests stop. No surprise bills.
-
-## What's Next?
-
-- [Dashboard Guide](./dashboard) — Manage keys, track spending, set limits
-- [API Reference](../reference/api) — Full technical documentation
-- [FAQ](../faq) — Common questions
 
 ## Troubleshooting
 

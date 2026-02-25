@@ -4,8 +4,6 @@ description: Common questions about Obul, pricing, security, and troubleshooting
 sidebar_position: 1
 ---
 
-# Frequently Asked Questions
-
 ## General
 
 ### What is Obul?

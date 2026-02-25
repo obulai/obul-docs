@@ -5,8 +5,6 @@ sidebar_position: 2
 status: coming-soon
 ---
 
-# Obul UI Login
-
 :::status Coming Soon — Q3 2025
 :::
 
