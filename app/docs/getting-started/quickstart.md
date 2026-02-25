@@ -8,7 +8,7 @@ Access the x402 agent economy in under 5 minutes.
 
 ## Prerequisites
 
-- A free Obul account
+- A Obul account
 - `curl` or your preferred HTTP client
 - (Optional) Python 3.8+ or Node.js 16+
 
@@ -23,6 +23,10 @@ Go to [my.obul.ai](https://my.obul.ai) and sign up with email or GitHub.
 3. Connect your card for pay-as-you-go billing.
 
 No wallet setup. No bridging. Just a credit card.
+
+:::info
+To activate API keys you must add a payment method. You won't be charged yet — usage is metered and billed at the end of each month (pay-as-you-go).
+:::
 
 ## Step 3: Generate an API Key
 
@@ -108,31 +112,5 @@ curl -H "X-Obul-Api-Key: obul_live_agent1_xxx" \
 curl -H "X-Obul-Api-Key: obul_live_agent2_xxx" \
   "https://proxy.obul.ai/proxy/https/compute-api.com/v1/run"
 ```
-
-Each key has its own:
-- Spend limits
-- Rate limits
-- Transaction history
-- Kill switch
-
-## Setting Spend Limits
-
-Protect yourself from runaway agents:
-
-1. Go to **API Keys**
-2. Click on a key
-3. Set **Daily Spend Limit** (e.g., $5)
-4. Set **Monthly Spend Limit** (e.g., $50)
-
-If an agent hits its limit, requests stop. No surprise bills.
-
-## Troubleshooting
-
-| Error | Cause | Fix |
-|-------|-------|-----|
-| "Invalid API key" | Wrong/revoked key | Check dashboard, regenerate |
-| "Payment invalid" | Account needs card | Add payment method in Billing |
-| "Rate limit exceeded" | Too many requests | Check key limits or upgrade plan |
-| "Spend limit reached" | Daily/monthly cap hit | Increase limit or wait for reset |
 
 Need help? [support@obul.ai](mailto:support@obul.ai) 
