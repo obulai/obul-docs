@@ -20,7 +20,7 @@ Go to [my.obul.ai](https://my.obul.ai) and sign up with email or GitHub.
 
 1. In the dashboard, go to **Billing**
 2. Click **Add Payment Method**  
-3. Connect your card
+3. Connect your card for pay-as-you-go billing.
 
 No wallet setup. No bridging. Just a credit card.
 
@@ -42,8 +42,8 @@ obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ### Using curl
 
 ```bash
-curl -H "X-Obul-Key: obul_live_xxx" \
-  https://proxy.obul.ai/https/api.example.com/v1/endpoint
+curl -H "X-Obul-Api-Key: obul_live_xxx" \
+  "https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint"
 ```
 
 ### Using Python
@@ -51,9 +51,9 @@ curl -H "X-Obul-Key: obul_live_xxx" \
 ```python
 import requests
 
-url = "https://proxy.obul.ai/https/api.example.com/v1/endpoint"
+url = "https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint"
 headers = {
-    "X-Obul-Key": "obul_live_xxx"
+    "X-Obul-Api-Key": "obul_live_xxx"
 }
 
 response = requests.get(url, headers=headers)
@@ -65,9 +65,9 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://proxy.obul.ai/https/api.example.com/v1/endpoint';
+const url = 'https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint';
 const headers = {
-  'X-Obul-Key': 'obul_live_xxx'
+  'X-Obul-Api-Key': 'obul_live_xxx'
 };
 
 fetch(url, { headers })
@@ -81,7 +81,6 @@ Go to **Transactions** in your dashboard. You'll see:
 
 - The API call you just made
 - The amount charged (e.g., $0.02)
-- The target service
 - Status (success/failed)
 
 ## What's Happening Under the Hood
@@ -92,7 +91,7 @@ When you make a request through Obul:
 2. **Payment Proof** — Obul generates and attaches the payment proof automatically
 3. **Forwarding** — Your request is forwarded with the proof attached
 4. **Response** — The service responds, you get the data
-5. **Tracking** — We deduct the charge from your account balance
+5. **Tracking** — We meter the charge to your account spend
 
 You never see the x402 complexity. It's just HTTP.
 
@@ -102,12 +101,12 @@ Building multiple agents? Create a key for each:
 
 ```bash
 # Agent 1: Data analysis
-curl -H "X-Obul-Key: obul_live_agent1_xxx" \
-  https://proxy.obul.ai/https/data-api.com/v1/query
+curl -H "X-Obul-Api-Key: obul_live_agent1_xxx" \
+  "https://proxy.obul.ai/proxy/https/data-api.com/v1/query"
 
 # Agent 2: Compute tasks  
-curl -H "X-Obul-Key: obul_live_agent2_xxx" \
-  https://proxy.obul.ai/https/compute-api.com/v1/run
+curl -H "X-Obul-Api-Key: obul_live_agent2_xxx" \
+  "https://proxy.obul.ai/proxy/https/compute-api.com/v1/run"
 ```
 
 Each key has its own:
@@ -132,8 +131,8 @@ If an agent hits its limit, requests stop. No surprise bills.
 | Error | Cause | Fix |
 |-------|-------|-----|
 | "Invalid API key" | Wrong/revoked key | Check dashboard, regenerate |
-| "Insufficient balance" | Account needs funds | Add payment method in Billing |
+| "Payment invalid" | Account needs card | Add payment method in Billing |
 | "Rate limit exceeded" | Too many requests | Check key limits or upgrade plan |
 | "Spend limit reached" | Daily/monthly cap hit | Increase limit or wait for reset |
 
-Need help? [support@obul.ai](mailto:support@obul.ai) or [Discord](https://discord.gg/obul)
+Need help? [support@obul.ai](mailto:support@obul.ai) 
