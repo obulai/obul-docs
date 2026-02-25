@@ -1,8 +1,8 @@
 {
   "name": "Obul Documentation",
   "description": "One API key. Infinite agents.",
-  "logo": "/obul-logo.svg",
-  "favicon": "/favicon.ico",
+  "logo": "/obul-logo.png",
+  "favicon": "/obul-logo-black.jpeg",
   "baseUrl": "https://docs.obul.ai",
   "llmsTxt": "/llms.txt",
   "llmsFullTxt": "/llms-full.txt",

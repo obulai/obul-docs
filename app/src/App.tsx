@@ -353,7 +353,7 @@ function Sidebar({
         {/* Logo */}
         <div className="p-4 border-b border-border">
           <a href="/" className="flex items-center gap-3">
-            <span className="text-2xl font-bold text-white glow-gold tracking-wider">OBUL</span>
+            <img src="/obul-logo.png" alt="Obul" className="h-8 w-auto" />
           </a>
           <p className="text-xs text-muted-foreground mt-1">Documentation</p>
         </div>
