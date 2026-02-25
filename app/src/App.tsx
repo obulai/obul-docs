@@ -563,7 +563,8 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      if (hash && hash !== currentSlug) {
+      // Only navigate if it's a valid doc slug (contains /), not an anchor link
+      if (hash && hash.includes('/') && hash !== currentSlug) {
         setCurrentSlug(hash);
       }
     };
