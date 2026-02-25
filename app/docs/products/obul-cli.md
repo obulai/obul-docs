@@ -1,111 +1,32 @@
 ---
 title: Obul CLI
-description: Terminal tool for power users — coming Q3 2025
-sidebar_position: 1
+description: Terminal tool for developers — coming Q3 2025
+sidebar_position: 2
 status: coming-soon
 ---
 
-:::status Coming Soon — Q3 2025
+:::tip Obul CLI — Coming Soon
+
+**Give your agents direct access to Obul — no API keys required.**
+
+Obul CLI lets your agents authenticate directly, so you never have to manage or expose API keys in your code. Agents can securely access the x402 economy through Obul's proxy with their own identities.
+
+**What you'll get:**
+- Agent-native authentication (no API key management)
+- Secure credential handling for your agents
+- Direct access to any x402-enabled service
+- Perfect for CI/CD, automation, and agent workflows
+
+Think of it as giving your agents their own identity to make payments — they can access Obul just like a developer would, but programmatically.
+
+**Coming Q3 2025**
 :::
-
-The command line is still the fastest way to get things done. Obul CLI brings the dashboard to your terminal.
-
-## What It Is
-
-A unified CLI for managing Obul resources, monitoring transactions, and integrating payments without leaving your shell.
-
-```bash
-# Install globally
-npm install -g @obul/cli
-
-# Or use with npx
-npx @obul/cli <command>
-```
-
-## What's Coming
-
-### Resource Management
-
-```bash
-# API Keys
-obul keys list
-obul keys create --name "production" --permissions write
-obul keys revoke obul_live_xxx
-
-# Services
-obul services list
-obul services create --name "my-api" --url "https://api.example.com"
-```
-
-### Transaction Monitoring
-
-```bash
-# Real-time stream
-obul transactions tail
-
-# Query and export
-obul transactions list --since "1h" --status success
-obul transactions export --format csv --since "7d"
-```
-
-### Payment Operations
-
-```bash
-# Check balance and history
-obul balance
-obul payments list
-
-# Context switching
-obul context use production
-obul context use staging
-```
-
-## Use Cases We're Building For
-
-**CI/CD Integration:**
-```yaml
-# .github/workflows/deploy.yml
-- name: Deploy with Obul
-  run: |
-    obul login --token ${{ secrets.OBUL_TOKEN }}
-    obul services update my-api --version ${{ github.sha }}
-```
-
-**Local Development:**
-```bash
-# Start local proxy
-obul proxy --port 8080 --target http://localhost:3000
-
-# Watch transactions in real-time
-obul transactions tail --format json | jq '.amount'
-```
-
-**Automation:**
-```bash
-#!/bin/bash
-# backup-transactions.sh
-
-DATE=$(date +%Y-%m-%d)
-obul transactions export \
-  --format csv \
-  --since "$DATE" \
-  --output "transactions-$DATE.csv"
-```
-
-## Installation (When Available)
-
-| Platform | Method |
-|----------|--------|
-| macOS | `brew install obul` |
-| Linux | `curl -sSL https://obul.ai/install.sh \| bash` |
-| Windows | `winget install Obul.CLI` |
-| npm | `npm install -g @obul/cli` |
 
 ## Get Early Access
 
 Be the first to try it:
 
-[Join the Waitlist](https://obul.ai/cli-waitlist)
+[Join the CLI Waitlist](https://obul.ai/cli-waitlist)
 
 ## Feedback
 

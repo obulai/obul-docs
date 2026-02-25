@@ -53,24 +53,24 @@
       ]
     },
     {
-      "group": "Products",
+      "group": "Other Products",
       "items": [
         {
-          "label": "Obul CLI",
-          "slug": "products/obul-cli",
-          "file": "products/obul-cli.md",
+          "label": "Obul Gateway",
+          "slug": "products/obul-gateway",
+          "file": "products/obul-gateway.md",
           "badge": "Coming Soon"
         },
         {
-          "label": "Obul UI Login",
+          "label": "Obul Login",
           "slug": "products/obul-ui",
           "file": "products/obul-ui.md",
           "badge": "Coming Soon"
         },
         {
-          "label": "Obul x402 Gateway",
-          "slug": "products/obul-gateway",
-          "file": "products/obul-gateway.md",
+          "label": "Obul CLI",
+          "slug": "products/obul-cli",
+          "file": "products/obul-cli.md",
           "badge": "Coming Soon"
         }
       ]
