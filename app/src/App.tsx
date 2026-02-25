@@ -511,26 +511,28 @@ function TableOfContents({ content }: { content: string }) {
     }));
   }, [content]);
   
-  if (headings.length === 0) return null;
-  
   return (
     <div className="hidden xl:block w-56 pr-4">
       <div className="sticky top-20">
         <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
           On this page
         </h4>
-        <ul className="space-y-2">
-          {headings.map((heading, index) => (
-            <li key={index}>
-              <a
-                href={`#${heading.id}`}
-                className="text-sm text-foreground/60 hover:text-obul-gold transition-colors line-clamp-2"
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {headings.length > 0 ? (
+          <ul className="space-y-2">
+            {headings.map((heading, index) => (
+              <li key={index}>
+                <a
+                  href={`#${heading.id}`}
+                  className="text-sm text-foreground/60 hover:text-obul-gold transition-colors line-clamp-2"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-muted-foreground/50">No sections</p>
+        )}
       </div>
     </div>
   );
