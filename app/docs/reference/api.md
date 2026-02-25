@@ -11,38 +11,40 @@ Production:   https://proxy.obul.ai
 Health Check: https://proxy.obul.ai/healthz
 ```
 
-## Authentication
-
-All requests need your API key in the `X-Obul-Key` header:
-
-```http
-X-Obul-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### Key Types
-
-| Prefix | Environment | Rate Limit |
-|--------|-------------|------------|
-| `obul_live_` | Production | 10,000/min |
-| `obul_test_` | Testing | 100/min |
-
-## URL Structure
+## Understanding the URL Structure
 
 ```
-https://proxy.obul.ai/{version}/{service}/{endpoint}
+https://proxy.obul.ai/proxy/https/api.example.com/v1/data
+\_____________________/ \____/ \____________________/ \_/
+       Base URL          Scheme       Target Host      Path
 ```
 
-| Component | Description | Example |
-|-----------|-------------|---------|
-| `version` | API version | `v1` |
-| `service` | Target service | `demo`, `custom` |
-| `endpoint` | Specific endpoint | `echo`, `chat` |
+- **Base URL**: `https://proxy.obul.ai` (Obul's proxy)
+- **Path**: `/proxy/{scheme}/{host}{path}`
+- **Scheme**: `https` or `http`
+- **Host**: The target API domain
+- **Path**: Full path including query parameters
 
 ### Examples
 
+```bash
+curl -X POST \
+  -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"test": "data"}' \
+  "https://proxy.obul.ai/proxy/https/httpbin.org/post"
 ```
-https://proxy.obul.ai/v1/demo/echo
-https://proxy.obul.ai/v1/custom/my-api/predict
+
+:::tip No Request Changes Needed
+When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's proxy — we handle the x402 payment negotiation automatically.
+:::
+
+## Authentication
+
+All requests need your API key in the `X-Obul-Api-Key` header:
+
+```http
+X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ## Headers
@@ -51,23 +53,16 @@ https://proxy.obul.ai/v1/custom/my-api/predict
 
 | Header | Value | Description |
 |--------|-------|-------------|
-| `X-Obul-Key` | `obul_live_xxx` | Your API key |
+| `X-Obul-Api-Key` | `obul_live_xxx` | Your API key |
 | `Content-Type` | `application/json` | Request format |
 
-### Optional
-
-| Header | Value | Description |
-|--------|-------|-------------|
-| `X-Payment-Address` | `0x...` | Wallet for payment |
-| `X-Idempotency-Key` | `uuid` | Prevent duplicates |
-| `X-Request-ID` | `uuid` | Trace requests |
 
 ## Endpoints
 
 ### Health Check
 
 ```http
-GET /healthz
+GET https://proxy.obul.ai/healthz
 ```
 
 **Response:**
@@ -79,42 +74,39 @@ GET /healthz
 }
 ```
 
-### Demo Echo
+### Proxy to Any Service
 
-Test endpoint that echoes your input.
+Call any x402-enabled API through Obul:
 
-```http
-POST /v1/demo/echo
+```bash
+# Call httpbin.org
+curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+  "https://proxy.obul.ai/proxy/https/httpbin.org/get"
+
+# Call any other service
+curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+  "https://proxy.obul.ai/proxy/https/api.example.com/v1/your-endpoint"
 ```
 
 **Request:**
 ```json
 {
-  "prompt": "Hello, Obul!"
+  "key": "value"
 }
 ```
 
 **Response:**
 ```json
 {
-  "result": "Hello, Obul!",
+  "result": "...",
   "transaction": {
     "hash": "0x...",
     "amount": "0.001",
     "status": "confirmed"
-  }
 }
 ```
 
-### Custom Proxy
-
-Proxy to your own API.
-
-```http
-POST /v1/custom/{your-endpoint}
-```
-
-Configure in dashboard first.
+Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
 
 ## Error Codes
 
@@ -231,146 +223,77 @@ X-Payment: <signed-payload>
 {"prompt": "Hello!"}
 ```
 
-## SDK Examples
+## Using in Your Code
 
 ### Python
 
 ```python
 import requests
+import os
 
-class ObulClient:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = "https://proxy.obul.ai"
-    
-    def request(self, method, endpoint, **kwargs):
-        headers = {
-            "X-Obul-Key": self.api_key,
-            "Content-Type": "application/json"
-        }
-        headers.update(kwargs.pop("headers", {}))
-        
-        url = f"{self.base_url}{endpoint}"
-        response = requests.request(method, url, headers=headers, **kwargs)
-        
-        if response.status_code == 402:
-            payment_info = response.json()
-            print(f"Payment required: {payment_info}")
-            # Sign and retry...
-        
-        return response
+OBUL_API_KEY = os.environ["OBUL_API_KEY"]
+OBUL_BASE_URL = "https://proxy.obul.ai/proxy/https"
+
+def call_service(endpoint, method="GET", data=None):
+    url = f"{OBUL_BASE_URL}/{endpoint}"
+    headers = {
+        "X-Obul-Api-Key": OBUL_API_KEY,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.request(
+        method=method,
+        url=url,
+        headers=headers,
+        json=data
+    )
+    return response.json()
 
 # Usage
-client = ObulClient("obul_live_xxx")
-response = client.request("POST", "/v1/demo/echo", json={"prompt": "Hello!"})
-print(response.json())
+result = call_service("api.example.com/compute", method="POST", data={"input": "test"})
 ```
 
 ### Node.js
 
 ```javascript
-class ObulClient {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
-    this.baseUrl = 'https://proxy.obul.ai';
-  }
+const OBUL_API_KEY = process.env.OBUL_API_KEY;
+const OBUL_BASE = 'https://proxy.obul.ai/proxy/https';
 
-  async request(endpoint, options = {}) {
-    const url = `${this.baseUrl}${endpoint}`;
-    const headers = {
-      'X-Obul-Key': this.apiKey,
+async function obulRequest(endpoint, options = {}) {
+  const url = `${OBUL_BASE}/${endpoint}`;
+
+  const response = await fetch(url, {
+    method: options.method || 'GET',
+    headers: {
+      'X-Obul-Api-Key': OBUL_API_KEY,
       'Content-Type': 'application/json',
       ...options.headers
-    };
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined
+  });
 
-    const response = await fetch(url, { ...options, headers });
-
-    if (response.status === 402) {
-      const paymentInfo = await response.json();
-      console.log('Payment required:', paymentInfo);
-      // Handle payment...
-    }
-
-    return response;
-  }
+  return response.json();
 }
 
 // Usage
-const client = new ObulClient('obul_live_xxx');
-const response = await client.request('/v1/demo/echo', {
+const result = await obulRequest('api.example.com/data', {
   method: 'POST',
-  body: JSON.stringify({ prompt: 'Hello!' })
+  body: { query: 'example' }
 });
-const data = await response.json();
-console.log(data);
 ```
 
-### Go
+### cURL Template
 
-```go
-package main
+```bash
+# GET request
+curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
 
-import (
-    "bytes"
-    "encoding/json"
-    "net/http"
-)
-
-type ObulClient struct {
-    APIKey  string
-    BaseURL string
-}
-
-func NewClient(apiKey string) *ObulClient {
-    return &ObulClient{
-        APIKey:  apiKey,
-        BaseURL: "https://proxy.obul.ai",
-    }
-}
-
-func (c *ObulClient) Request(method, endpoint string, body interface{}) (*http.Response, error) {
-    url := c.BaseURL + endpoint
-    jsonBody, _ := json.Marshal(body)
-    req, _ := http.NewRequest(method, url, bytes.NewBuffer(jsonBody))
-    
-    req.Header.Set("X-Obul-Key", c.APIKey)
-    req.Header.Set("Content-Type", "application/json")
-    
-    client := &http.Client{}
-    return client.Do(req)
-}
+# POST request with JSON
+curl -X POST \
+     -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+     -H "Content-Type: application/json" \
+     -d '{"key": "value"}' \
+     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
 ```
 
-## Webhooks
-
-Configure webhooks in your dashboard for real-time events.
-
-### Events
-
-| Event | Description |
-|-------|-------------|
-| `payment.success` | Payment processed |
-| `payment.failed` | Payment failed |
-| `api_key.created` | New key created |
-| `api_key.revoked` | Key revoked |
-
-### Verification
-
-```python
-import hmac
-import hashlib
-
-def verify_webhook(payload, signature, secret):
-    expected = hmac.new(
-        secret.encode(),
-        payload.encode(),
-        hashlib.sha256
-    ).hexdigest()
-    return hmac.compare_digest(f"sha256={expected}", signature)
-```
-
-## Support
-
-- Email: [support@obul.ai](mailto:support@obul.ai)
-- Discord: [discord.gg/obul](https://discord.gg/obul)
-- Status: [status.obul.ai](https://status.obul.ai)
