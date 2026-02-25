@@ -84,7 +84,7 @@ function parseFrontmatter(content: string): { data: Record<string, string>; cont
 
 // Parse :::tip blocks to HTML
 function parseTipBlocks(markdown: string): string {
-  const tipBlockRegex = /:::(\w+)\s*\n([\s\S]*?)\n:::/g;
+  const tipBlockRegex = /:::(\w+)\s*([\s\S]*?):::/g;
   return markdown.replace(tipBlockRegex, (_match, type, content) => {
     const tipTypes: Record<string, { icon: string; class: string }> = {
       tip: { icon: '💡', class: 'bg-green-500/10 border-green-500/30' },
