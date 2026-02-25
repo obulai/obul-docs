@@ -1,16 +1,30 @@
 ---
 title: FAQ
-description: Common questions about pricing, security, and troubleshooting
+description: Common questions about Obul, pricing, security, and troubleshooting
 sidebar_position: 1
 ---
 
 # Frequently Asked Questions
 
+## General
+
+### What is Obul?
+
+Obul is a proxy layer that lets you access the x402 agent economy with nothing more than an API key. We handle payment proofs, gas management, and protocol negotiation automatically.
+
+### What is x402?
+
+x402 is the HTTP 402 Payment Required standard. It's how agents pay for API calls in a machine-to-machine economy. 70M+ transactions have already happened on x402.
+
+### Do I need to know about crypto or wallets?
+
+No. You get an API key, add a credit card, and make HTTP requests. Obul handles all the x402 complexity.
+
 ## Pricing
 
 ### How much does Obul cost?
 
-**1% of payment volume.** No monthly fees, no setup costs.
+**1% of transaction volume.** No monthly fees, no setup costs.
 
 | Volume | Monthly Cost |
 |--------|--------------|
@@ -18,72 +32,98 @@ sidebar_position: 1
 | $10,000 | $100 |
 | $100,000 | $1,000 |
 
-### Any hidden fees?
+### What am I actually paying for?
 
-No. You pay:
-- 1% to Obul
-- Network gas fees
+When you call an x402 service through Obul, you pay:
+1. The service's fee (e.g., $0.02 for a compute call)
+2. 1% to Obul (e.g., $0.0002)
+3. Network gas fees (usually pennies)
 
-That's it.
+### Do I need to hold crypto?
+
+No. You add USD to your account with a credit card. We handle converting to the required tokens behind the scenes.
 
 ### What networks are supported?
 
-| Network | Status | Gas Cost |
-|---------|--------|----------|
-| Base | ✅ Live | ~$0.01 |
-| Base Sepolia | ✅ Live | Free (testnet) |
-| Ethereum | 🚧 Q2 2025 | ~$5-50 |
-| Polygon | 🚧 Q2 2025 | ~$0.001 |
-
-### Can I use custom tokens?
-
-Yes. Contact support to add custom ERC-20 tokens.
+| Network | Status |
+|---------|--------|
+| Base | ✅ Live |
+| Base Sepolia | ✅ Live (testnet) |
+| Ethereum | 🚧 Q2 2025 |
+| Polygon | 🚧 Q2 2025 |
 
 ## Security
 
 ### Is Obul secure?
 
-Yes. Measures include:
+Yes. Security measures include:
 
-- **Non-custodial** — We never hold your funds
-- **Encrypted keys** — Hashed at rest
-- **Rate limiting** — Prevent abuse
-- **IP restrictions** — Optional allowlisting
-- **Audit logging** — All actions logged
+- **Scoped API keys** — Each key has limited permissions
+- **Spend limits** — Cap daily/monthly spending per key
+- **Instant revocation** — Kill compromised keys immediately
+- **Encrypted at rest** — All data encrypted
+- **Audit logging** — Every action logged
 
-### Has Obul been audited?
+### What if my API key is leaked?
 
-Yes. Audited by:
-- Trail of Bits (2024)
-- OpenZeppelin (2024)
+1. Go to **API Keys** in your dashboard
+2. Find the compromised key
+3. Click **Revoke**
+4. The key stops working immediately
 
-Reports available on request.
+If you had spend limits set, your exposure is capped.
 
 ### Can I require 2FA?
 
 Yes. Enable in **Settings** → **Security** → **Two-Factor Authentication**.
 
+## Using Obul
+
+### How do I call an x402 service?
+
+```bash
+curl -H "X-Obul-Key: $OBUL_API_KEY" \
+  https://proxy.obul.ai/https/api.target-service.com/v1/endpoint
+```
+
+Obul discovers the x402 requirements, attaches the payment proof, and forwards your request.
+
+### What services can I access?
+
+Any service that supports x402. This includes:
+- Compute APIs
+- Data feeds
+- Search services
+- Reasoning engines
+- Storage
+
+The ecosystem is growing daily.
+
+### Can I set spending limits?
+
+Yes. Per-key limits for:
+- Daily spend
+- Monthly spend
+- Per-request cost
+
+When a limit is hit, requests stop.
+
+### What happens if I run out of balance?
+
+Requests return a "insufficient balance" error. Set up auto-reload in **Billing** to avoid this.
+
 ## Migration
 
 ### Can I migrate from another provider?
 
-Yes. We support migration from:
-
-| From | Path |
-|------|------|
-| Raw x402 | Update endpoint URL |
-| Coinbase CDP | Export keys, import to Obul |
-| Custom solution | Gradual cutover |
-
-### How do I migrate to Obul?
+Yes. If you're currently managing your own x402 wallet:
 
 1. Create Obul account
 2. Generate API keys
-3. Update application headers
-4. Test in staging
-5. Gradual production rollout
+3. Replace your wallet-based calls with Obul proxy calls
+4. Gradual cutover
 
-**Time:** 1-2 days
+**Time:** Usually 1-2 days depending on complexity.
 
 ### Can I export my data?
 
@@ -91,7 +131,12 @@ Yes. Go to **Transactions**, apply filters, click **Export**, choose CSV/JSON.
 
 ### Is there vendor lock-in?
 
-No. Obul uses the open x402 standard. Migrate to any x402-compatible service anytime.
+No. x402 is an open standard. You can:
+- Use Obul
+- Manage your own wallet
+- Switch to another x402 facilitator
+
+Your code changes minimally (just the `X-Obul-Key` header).
 
 ## Troubleshooting
 
@@ -107,37 +152,35 @@ No. Obul uses the open x402 standard. Migrate to any x402-compatible service any
 2. Generate new key if needed
 3. Check prefix (`obul_live_` vs `obul_test_`)
 
-### "Payment required"
+### "Insufficient balance"
 
 **Causes:**
-- Account balance low
-- Payment method not set up
+- Account needs funds
+- Auto-reload failed
 
 **Fix:**
-1. Check balance in dashboard
-2. Add funds in **Billing**
+1. Go to **Billing** → **Add Funds**
+2. Check payment method is valid
 
 ### "Rate limit exceeded"
 
 **Causes:**
 - Too many requests
-- Burst limit hit
+- Key's rate limit hit
 
 **Fix:**
-1. Implement exponential backoff
-2. Upgrade to Pro plan
-3. Contact support for custom limits
+1. Check key settings
+2. Implement exponential backoff
+3. Contact support for higher limits
 
-### Transactions stuck "pending"
+### "Spend limit reached"
 
 **Causes:**
-- Network congestion
-- Low gas price
+- Daily or monthly cap hit
 
 **Fix:**
-1. Wait (most resolve within 10 minutes)
-2. Check [BaseScan](https://basescan.org) for status
-3. Contact support if stuck > 1 hour
+1. Wait for limit reset
+2. Or increase limit in key settings
 
 ### Webhook not receiving events
 

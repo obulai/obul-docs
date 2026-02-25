@@ -1,89 +1,94 @@
 ---
 title: What is Obul?
-description: The proxy layer that makes any API payable in seconds — one API key, infinite agents
+description: One API key to access the entire x402 agent economy — no wallets, no gas, no complexity
 sidebar_position: 1
 ---
 
 # What is Obul?
 
-Obul is a **proxy layer** that makes any API payable in seconds.
+**One API key. The entire x402 economy. Zero wallets.**
 
-Think of us as [Chronos](https://en.wikipedia.org/wiki/Chronos) for AI agents — the invisible infrastructure that handles payments so your agents can focus on what they do best. We sit between your API and the world, intercepting requests and handling payments transparently.
+Obul is a proxy layer that lets you call any x402-enabled service with nothing more than an API key. We handle the payment proofs, gas management, and protocol negotiation automatically.
 
-## One API Key. Infinite Agents.
+## The Problem We Solve
+
+You're building an agent in Cursor or Bolt. You want to compose it with real infrastructure — compute, search, data APIs. You discover the best services run on x402 (70M+ agent-to-agent transactions already happening).
+
+Then you hit the wall:
+
+- Set up a wallet
+- Manage private keys  
+- Figure out which network to bridge to
+- Monitor gas so your agent doesn't error out mid-task
+- Worry about spending caps and security
+
+Three weeks later, your agent is still not shipped. Another one for the graveyard.
+
+## Our Solution
 
 ```bash
-# Your entire integration
-curl -H "X-Obul-Key: your_key" https://proxy.obul.ai/...
+curl -H "X-Obul-Key: $OBUL_API_KEY" \
+  https://proxy.obul.ai/https/api.target-service.com/v1/analyze
 ```
 
-That's it. No complex setup. No infrastructure to manage. Just one header.
-
-## Why We Exist
-
-Building payment infrastructure for APIs typically takes weeks of:
-- Payment gateway integration
-- Billing system setup
-- Invoice management
-- Error handling and retries
-- Production security hardening
-
-**Most developers abandon payment projects** before reaching production due to this complexity.
-
-We built Obul because we got tired of watching good ideas die in infrastructure hell.
+That's it. Obul discovers the x402 requirements, attaches the payment proof, and forwards your request. You get the response. We track the charge in your dashboard. Your agent keeps running.
 
 ## What You Get
 
 | Feature | What It Means |
 |---------|---------------|
-| **Instant Setup** | 5 minutes, not weeks |
-| **x402 Native** | Built on the HTTP 402 Payment Required standard |
-| **Usage-Based** | Pay only for what you use |
-| **Production Ready** | Enterprise-grade security from day one |
+| **One API Key** | Access the entire x402 ecosystem |
+| **Zero Wallet Management** | No keys, no gas, no bridging |
+| **Scoped Keys** | Per-agent keys with spend limits |
+| **Fiat Dashboard** | Track spending in dollars, not ETH |
+| **Kill Switches** | Revoke keys instantly if something goes wrong |
 
 ## How It Works
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Client    │────▶│    Obul     │────▶│   Target    │
-│   Request   │     │    Proxy    │     │    API      │
-└─────────────┘     └─────────────┘     └─────────────┘
-                           │
-                           ▼
-                    ┌─────────────┐
-                    │   x402      │
-                    │   Payment   │
-                    └─────────────┘
+Your Agent          Obul Proxy          x402 Service
+    │                   │                   │
+    │─── HTTP Request ─▶│                   │
+    │  (with API key)   │                   │
+    │                   │─── Discover x402 ─▶│
+    │                   │◀── Requirements ──│
+    │                   │                   │
+    │                   │─── Attach Proof ─▶│
+    │                   │◀──── Response ────│
+    │◀── Response ──────│                   │
 ```
 
-1. Client sends request to Obul proxy
-2. Obul checks for valid payment
-3. If paid (or free), request passes through to your API
-4. If payment required, client gets a 402 response with payment instructions
-5. Client pays, retries, and the request goes through
+1. Your agent sends a request to Obul with your API key
+2. Obul discovers the x402 payment requirements from the target service
+3. Obul attaches the payment proof automatically
+4. The service responds, your agent gets the data
+5. We track the $0.02 (or whatever) in your dashboard
 
-Your API doesn't need to know anything about the payment flow. It just sees requests.
+## Built for Agent Builders
 
-## Built for AI Agents
+The future is agents composing with specialized services. A reasoning agent calls a compute API. A trading bot subscribes to data feeds. A coding agent spins up serverless functions.
 
-The future is agents paying agents. An LLM calls an API. A trading bot subscribes to a data feed. A coding agent spins up compute.
+These agents need to pay without human intervention. Without wallet setup. Without becoming crypto engineers.
 
-These agents need to pay without human intervention. Obul lets them do that.
+**With Obul, you can:**
 
-**Use cases we're seeing:**
+- Spin up 12 different agent workflows, each with scoped keys
+- Set $5/day spend limits per agent
+- Never worry about one going rogue and draining funds
+- Access the 70M+ transaction x402 economy with HTTP requests
 
-- **AI Agent Marketplaces** — Charge per API call from autonomous agents
-- **Data APIs** — Monetize your data with per-request pricing
-- **Compute Services** — Bill for GPU/CPU usage in real-time
-- **SaaS Products** — Usage-based billing without complex invoicing
+## The 70M+ Transaction Economy
 
-## The Stack
+x402 is the HTTP 402 Payment Required standard. It's how agents pay agents. The ecosystem includes:
 
-- **x402 Protocol** — HTTP 402 Payment Required standard
-- **Base Network** — Fast, cheap settlement
-- **Open Standard** — No vendor lock-in, migrate anytime
+- Serverless compute
+- Specialized reasoning APIs
+- On-chain data feeds
+- Memory and storage services
+
+**Obul makes this economy accessible.** Not "crypto infrastructure" you need to learn — just APIs you can call with better tooling.
 
 ## Ready?
 
-- [Learn about x402](./x402-primer) — The protocol powering everything
-- [Get started in 5 minutes](../getting-started/quickstart) — Your first payable API call
+- [Learn about x402](./x402-primer) — The protocol powering the agent economy
+- [Get started in 5 minutes](../getting-started/quickstart) — Your first x402 API call

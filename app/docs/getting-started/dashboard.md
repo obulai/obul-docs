@@ -1,41 +1,38 @@
 ---
 title: Dashboard Guide
-description: Manage API keys, monitor transactions, and configure billing
+description: Manage API keys, track spending, and control your x402 access
 sidebar_position: 2
 ---
 
 # Dashboard Guide
 
-The Obul Dashboard at [my.obul.ai](https://my.obul.ai) is your control center.
+The Obul Dashboard at [my.obul.ai](https://my.obul.ai) is your control center for accessing the x402 economy.
 
 ## Overview
 
-The Overview page gives you a high-level view of your Obul usage:
-
-![Dashboard Overview](/images/dashboard-overview.png)
-
-### Key Metrics
+The Overview page shows:
 
 | Metric | Description |
 |--------|-------------|
-| **Unpaid Balance** | Current outstanding balance |
-| **Transactions** | Total API calls in selected period |
-| **Usage Trend** | Visual chart of spend over time |
-| **Recent Activity** | Latest API calls with status |
+| **Account Balance** | Current available balance |
+| **Monthly Spend** | Total spent this month |
+| **Active Keys** | Number of API keys in use |
+| **Recent Calls** | Latest API calls with status |
+
+![Dashboard Overview](/images/dashboard-overview.png)
 
 ## API Keys
 
-Navigate to **API Keys** to manage access.
+Navigate to **API Keys** to manage your access to the x402 ecosystem.
 
 ### Creating a Key
 
 1. Click **Create New Key**
-2. Enter a name
-3. Select permissions:
-   - `read` — Read-only access
-   - `write` — Full access
-   - `admin` — Full access + key management
-4. (Optional) Set IP restrictions
+2. Enter a name (e.g., "Production Agent")
+3. Set spend limits (recommended):
+   - Daily limit: $5-10 for testing
+   - Monthly limit: $50-100 for production
+4. (Optional) Set rate limits
 5. Click **Create**
 
 **Important:** Copy your key immediately. We only show it once.
@@ -44,15 +41,29 @@ Navigate to **API Keys** to manage access.
 
 | Prefix | Environment | Use For |
 |--------|-------------|---------|
-| `obul_live_` | Production | Real payments |
-| `obul_test_` | Testing | Development, staging |
+| `obul_live_` | Production | Real API calls, real charges |
+| `obul_test_` | Testing | Development, no charges |
+
+### Spend Limits
+
+Protect yourself from unexpected charges:
+
+| Limit | Purpose |
+|-------|---------|
+| **Daily** | Prevent runaway agents from draining account |
+| **Monthly** | Cap total spend per key |
+| **Per-request** | Limit individual call costs |
+
+When a limit is hit, requests stop. The key returns a "spend limit exceeded" error.
 
 ### Rotating Keys
 
+If you suspect a key is compromised:
+
 1. Create a new key
-2. Update your application
-3. Delete the old key
-4. Monitor for errors
+2. Update your agent to use the new key
+3. Revoke the old key
+4. Monitor for any unauthorized usage
 
 ### Revoking Keys
 
@@ -60,72 +71,81 @@ Navigate to **API Keys** to manage access.
 2. Click **...** → **Revoke**
 3. Confirm
 
-Revoked keys stop working immediately.
+Revoked keys stop working immediately. All pending requests fail.
 
 ## Transaction Logs
 
-The **Transactions** section shows all API calls.
+The **Transactions** section shows every API call made through Obul.
 
 | Field | Description |
 |-------|-------------|
 | **Time (UTC)** | When the request was made |
-| **Service** | API endpoint called |
-| **Service URL** | Full request URL |
+| **Service** | The x402 service called |
+| **Endpoint** | Full URL of the request |
 | **Status** | `success`, `pending`, or `failed` |
-| **Amount** | Payment amount |
+| **Amount** | Cost in USD |
+| **Key Used** | Which API key made the call |
 
 ### Filtering
 
 - **Date range** — Pick a time window
 - **Status** — Success/failed/pending
-- **Service** — Filter by endpoint
-- **Amount** — Filter by payment size
+- **Service** — Filter by specific API
+- **Key** — Filter by API key
+- **Amount** — Filter by cost
 
 ### Exporting
 
-1. Apply filters
+Export your transaction data for accounting:
+
+1. Apply desired filters
 2. Click **Export**
-3. Choose CSV or JSON
+3. Choose format: CSV or JSON
 4. Download
 
 ## Billing
 
-Navigate to **Billing** for payments and invoices.
+Navigate to **Billing** to manage your account balance.
 
 ### Adding Funds
 
 1. Go to **Billing** → **Add Funds**
-2. Select amount
-3. Complete payment
+2. Select amount ($10, $50, $100, or custom)
+3. Pay with card
 
-### Auto-Pay Settings
+Funds are available immediately. No bridging. No gas tokens.
+
+### Auto-Reload
+
+Never run out of funds mid-workflow:
 
 ```
-Auto-Pay Options:
-├── Disabled — Manual payments only
-├── Threshold — Auto-pay when balance below $X
-└── Scheduled — Auto-pay every X days
+Auto-Reload Options:
+├── Disabled — Manual top-ups only
+├── Threshold — Reload when balance below $X
+└── Scheduled — Reload $X every Y days
 ```
 
-### Payment Methods
+### Usage Alerts
 
-| Method | Networks |
-|--------|----------|
-| ETH | Base, Base Sepolia |
-| USDC | Base, Base Sepolia |
-| Custom ERC-20 | Contact support |
+Get notified when:
+- Balance drops below $X
+- Daily spend exceeds $X
+- Monthly spend exceeds $X
+
+Configure in **Billing** → **Alerts**.
 
 ## Team Access
 
-### Adding Members
+### Adding Team Members
 
 1. Go to **Settings** → **Team**
 2. Click **Invite Member**
 3. Enter email
 4. Select role:
-   - **Viewer** — View-only
+   - **Viewer** — View-only access
    - **Developer** — Create keys, view transactions
-   - **Admin** — Full access
+   - **Admin** — Full access including billing
 5. Send invitation
 
 ### Role Permissions
@@ -157,21 +177,23 @@ View all team actions:
 ### API
 
 - **Default timeout** — Request timeout (default: 30s)
-- **Retry policy** — Automatic retries
-- **Webhook URL** — Event notifications
+- **Retry policy** — Automatic retries on failure
+- **Webhook URL** — Receive event notifications
 
 ## Webhooks
 
-Configure webhooks for real-time events.
+Configure webhooks to receive real-time events.
 
 ### Supported Events
 
 | Event | Description |
 |-------|-------------|
-| `payment.success` | Payment processed |
-| `payment.failed` | Payment failed |
+| `payment.success` | API call completed successfully |
+| `payment.failed` | API call failed |
 | `key.created` | New API key created |
 | `key.revoked` | API key revoked |
+| `limit.approaching` | Spend limit approaching |
+| `limit.exceeded` | Spend limit exceeded |
 
 ### Webhook Payload
 
@@ -181,14 +203,15 @@ Configure webhooks for real-time events.
   "timestamp": "2025-02-24T15:45:00Z",
   "data": {
     "transaction_id": "txn_xxx",
-    "amount": "0.001",
-    "currency": "ETH",
-    "api_key": "obul_live_xxx"
+    "amount": "0.02",
+    "currency": "USD",
+    "api_key": "obul_live_xxx",
+    "service": "compute-api.com"
   }
 }
 ```
 
 ## Next Steps
 
-- [API Reference](../reference/api) — Full technical docs
+- [API Reference](../reference/api) — Full technical documentation
 - [FAQ](../faq) — Common questions
