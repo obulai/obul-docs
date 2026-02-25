@@ -17,7 +17,7 @@ The Overview page shows:
 | **Active Keys** | Number of API keys in use |
 | **Recent Calls** | Latest API calls with status |
 
-![Dashboard Overview](/images/dashboard-overview.png)
+<img src="./images/dashboard-overview.png" alt="Dashboard Overview" />
 
 ## API Keys
 
