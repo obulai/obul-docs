@@ -5,7 +5,7 @@ sidebar_position: 1
 status: coming-soon
 ---
 
-:::tip Obul Gateway — Coming Soon
+:::info 
 
 **The easiest way to monetize your APIs with x402.**
 
@@ -20,18 +20,8 @@ Obul Gateway lets you wrap any API with x402 payments — without writing a sing
 
 Currently focused on helping buyers access x402 APIs. Next up: enabling developers to monetize their APIs effortlessly.
 
-**Coming Q4 2025**
 :::
 
 ## Get Early Access
 
-Be the first to try it:
-
-[Join the Gateway Waitlist](https://obul.ai/gateway-waitlist)
-
-## Feedback
-
-Have feature requests? Let us know:
-
-- Email: [gateway-feedback@obul.ai](mailto:gateway-feedback@obul.ai)
-- Discord: #gateway-discussion
+Reach out to team.
