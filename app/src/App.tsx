@@ -199,7 +199,7 @@ function renderTokens(tokens: any[]): string {
     4: 'text-lg font-medium mt-4 mb-2',
   };
   return `
-    <h${depth} id="${slug}" class="group ${sizes[depth] || ''} text-foreground">
+    <h${depth} id="${slug}" class="group ${sizes[depth] || ''} text-foreground" style="scroll-margin-top: 80px;">
       ${text}
       <a href="#${slug}" class="heading-anchor">#</a>
     </h${depth}>
@@ -514,7 +514,7 @@ function TableOfContents({ content }: { content: string }) {
   if (headings.length === 0) return null;
   
   return (
-    <div className="hidden xl:block w-64 pl-8">
+    <div className="hidden xl:block w-56 pr-4">
       <div className="sticky top-20">
         <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
           On this page
