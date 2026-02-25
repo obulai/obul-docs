@@ -17,7 +17,7 @@ The Overview page shows:
 | **Active Keys** | Number of API keys in use |
 | **Recent Calls** | Latest API calls with status |
 
-![Dashboard Overview](https://github.com/dpbmaverick98/obul_docs/blob/533b1c9d2c56088139f5fd70f120f4a162c504c6/app/public/images/dashboard-overview.png)
+![Dashboard Overview](/images/dashboard-overview.png)
 
 ## API Keys
 
