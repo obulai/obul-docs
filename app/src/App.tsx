@@ -192,7 +192,7 @@ function renderTokens(tokens: any[]): string {
 
 // Custom image rendering
 (renderer as any).image = ({ href, title, text }: { href: string; title?: string | null; text: string }) => {
-  return `<img src="${href}" alt="${text}" title="${title || ''}" class="max-w-full h-auto my-4 rounded-lg" />`;
+  return `<img src="${href}" alt="${text}" title="${title || ''}" class="max-w-full h-auto my-4 rounded-lg border border-obul-gold/30" />`;
 };
 
 // Custom table rendering
