@@ -190,6 +190,11 @@ function renderTokens(tokens: any[]): string {
   return `<a href="${href}" ${target} class="docs-link">${text}${icon}</a>`;
 };
 
+// Custom image rendering
+(renderer as any).image = ({ href, title, text }: { href: string; title?: string | null; text: string }) => {
+  return `<img src="${href}" alt="${text}" title="${title || ''}" class="max-w-full h-auto my-4 rounded-lg" />`;
+};
+
 // Custom table rendering
 (renderer as any).table = ({ header, rows }: { header: any[]; rows: any[][] }) => {
   const headerHtml = `<tr>${header.map((h: any) => `<th class="px-4 py-3 text-left text-sm font-semibold text-foreground/80 bg-secondary border-b border-border">${renderTokens(h.tokens || [h])}</th>`).join('')}</tr>`;
