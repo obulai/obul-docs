@@ -50,9 +50,9 @@ module.exports = {
         },
         // Obul custom colors
         obul: {
-          gold: "#d4b86a",
-          "gold-light": "#e5c97b",
-          "gold-dark": "#b8a050",
+          gold: "#D2B26B",
+          "gold-light": "#E5C97B",
+          "gold-dark": "#B8A050",
           grid: "#262626",
           success: "#22c55e",
         },

@@ -8,7 +8,7 @@ The Obul Dashboard at [my.obul.ai](https://my.obul.ai) is your control center fo
 
 ## Overview
 
-<img src="./images/dashboard-overview.png" alt="Dashboard Overview" style="border: 1px solid #d4b86a; border-radius: 8px;" />
+<img src="./images/dashboard-overview.png" alt="Dashboard Overview" style="border: 1px solid #D2B26B; border-radius: 8px;" />
 
 The Overview page shows:
 
@@ -24,7 +24,7 @@ The Overview page shows:
 
 Navigate to **API Keys** to manage your access to the x402 ecosystem.
 
-<img src="./images/dashboard-apikeys.png" alt="Dashboard Overview" style="border: 1px solid #d4b86a; border-radius: 8px;" />
+<img src="./images/dashboard-apikeys.png" alt="Dashboard Overview" style="border: 1px solid #D2B26B; border-radius: 8px;" />
 
 ### Creating a Key
 
@@ -54,7 +54,7 @@ Deleted keys stop working immediately. All pending requests fail.
 
 ## Billing
 
-<img src="./images/dashboard-billing.png" alt="Dashboard Overview" style="border: 1px solid #d4b86a; border-radius: 8px;" />
+<img src="./images/dashboard-billing.png" alt="Dashboard Overview" style="border: 1px solid #D2B26B; border-radius: 8px;" />
 
 
 ### Spending Limtis

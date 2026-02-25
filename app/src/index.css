@@ -130,12 +130,12 @@
   /* Copy button */
   .copy-btn {
     @apply flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#8b949e] 
-           bg-[#21262d] hover:bg-[#30363d] hover:text-[#d4b86a] 
+           bg-[#21262d] hover:bg-[#30363d] hover:text-[#D2B26B] 
            rounded-md transition-all duration-200 border border-[#30363d];
   }
   
   .copy-btn:hover {
-    @apply border-[#d4b86a]/30;
+    @apply border-[#D2B26B]/30;
   }
   
   /* Code block content area */
@@ -151,7 +151,7 @@
   
   /* Inline code styling */
   code:not(.code-block code) {
-    @apply px-1.5 py-0.5 rounded-md bg-[#21262d] text-sm font-mono text-[#d4b86a] 
+    @apply px-1.5 py-0.5 rounded-md bg-[#21262d] text-sm font-mono text-[#D2B26B] 
            border border-[#30363d]/50;
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, Consolas, monospace;
   }
@@ -237,7 +237,7 @@
   /* Bash/Shell */
   .language-bash .token.function,
   .language-shell .token.function {
-    color: #d4b86a;
+    color: #D2B26B;
   }
   
   .language-bash .token.builtin,
@@ -290,7 +290,7 @@
   
   /* HTTP */
   .language-http .token.request-line {
-    color: #d4b86a;
+    color: #D2B26B;
   }
   
   .language-http .token.header-name {
@@ -316,7 +316,7 @@
   
   /* Gold accent text */
   .text-gold {
-    @apply text-[#d4b86a];
+    @apply text-[#D2B26B];
   }
   
   /* Glow effect for logo */
@@ -328,7 +328,7 @@
   
   /* Status badges */
   .badge-coming-soon {
-    @apply px-2 py-0.5 text-xs rounded-full bg-[#d4b86a]/10 text-[#d4b86a] border border-[#d4b86a]/30;
+    @apply px-2 py-0.5 text-xs rounded-full bg-[#D2B26B]/10 text-[#D2B26B] border border-[#D2B26B]/30;
   }
   
   /* Table styling */
@@ -350,12 +350,12 @@
   
   /* Link styling */
   .docs-link {
-    @apply text-[#d4b86a] hover:text-[#e5c97b] transition-colors underline underline-offset-4;
+    @apply text-[#D2B26B] hover:text-[#e5c97b] transition-colors underline underline-offset-4;
   }
   
   /* Heading anchors */
   .heading-anchor {
-    @apply ml-2 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-[#d4b86a] transition-opacity;
+    @apply ml-2 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-[#D2B26B] transition-opacity;
   }
   
   /* Callout boxes */
@@ -377,7 +377,7 @@
   
   /* LLM link in footer */
   .llm-link {
-    @apply text-xs text-muted-foreground hover:text-[#d4b86a] transition-colors;
+    @apply text-xs text-muted-foreground hover:text-[#D2B26B] transition-colors;
   }
 }
 
