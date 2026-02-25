@@ -35,7 +35,8 @@ curl -X POST \
   "https://proxy.obul.ai/proxy/https/httpbin.org/post"
 ```
 
-:::tip No Request Changes Needed
+:::tip No Request Changes Needed!
+
 When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's proxy — we handle the x402 payment negotiation automatically.
 :::
 
@@ -86,24 +87,6 @@ curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
 # Call any other service
 curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
   "https://proxy.obul.ai/proxy/https/api.example.com/v1/your-endpoint"
-```
-
-**Request:**
-```json
-{
-  "key": "value"
-}
-```
-
-**Response:**
-```json
-{
-  "result": "...",
-  "transaction": {
-    "hash": "0x...",
-    "amount": "0.001",
-    "status": "confirmed"
-}
 ```
 
 Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
@@ -160,70 +143,24 @@ Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
 | Pro | 10,000 | 100 |
 | Enterprise | Custom | Custom |
 
-### Rate Limit Headers
-
-```http
-X-RateLimit-Limit: 10000
-X-RateLimit-Remaining: 9995
-X-RateLimit-Reset: 1708790400
-```
-
-### Handling 429
-
-```python
-import time
-import requests
-
-def make_request_with_retry(url, headers, max_retries=3):
-    for attempt in range(max_retries):
-        response = requests.get(url, headers=headers)
-        
-        if response.status_code == 429:
-            retry_after = int(response.headers.get('Retry-After', 60))
-            time.sleep(retry_after)
-            continue
-            
-        return response
-    
-    raise Exception("Max retries exceeded")
-```
-
-## x402 Payment Flow
-
-When payment is required, you get a 402:
-
-```http
-HTTP/1.1 402 Payment Required
-Content-Type: application/json
-
-{
-  "x402-version": 1,
-  "x402-facilitator": "obul",
-  "x402-payment": {
-    "scheme": "exact",
-    "network": "base-sepolia",
-    "required-amount": "1000000000000000",
-    "token": "0x0000000000000000000000000000000000000000",
-    "pay-to": "0x..."
-  }
-}
-```
-
-### Completing Payment
-
-1. Parse the 402 response
-2. Sign payment with your wallet
-3. Retry with `X-Payment` header:
-
-```http
-POST /v1/demo/echo
-X-Obul-Key: obul_live_xxx
-X-Payment: <signed-payload>
-
-{"prompt": "Hello!"}
-```
 
 ## Using in Your Code
+
+### cURL Template
+
+```bash
+# GET request
+curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
+
+# POST request with JSON
+curl -X POST \
+     -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+     -H "Content-Type: application/json" \
+     -d '{"key": "value"}' \
+     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
+```
+
 
 ### Python
 
@@ -280,20 +217,5 @@ const result = await obulRequest('api.example.com/data', {
   method: 'POST',
   body: { query: 'example' }
 });
-```
-
-### cURL Template
-
-```bash
-# GET request
-curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
-
-# POST request with JSON
-curl -X POST \
-     -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-     -H "Content-Type: application/json" \
-     -d '{"key": "value"}' \
-     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
 ```
 

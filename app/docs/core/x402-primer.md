@@ -13,35 +13,42 @@ x402 is the **HTTP 402 Payment Required** protocol. It's the standard that makes
 Want to charge for your API?
 
 1. Set up a company
-2. Integrate Stripe
-3. Build user management
+2. Integrate Stripe (requires KYB)
+3. Build user management 
 4. Handle KYC/AML compliance
 5. Build billing dashboards
 6. Manage invoices and dunning
 7. Deal with chargebacks
 
-**Months of work** before you can charge your first dollar.
+**Months of work and Millions in LLM tokens spent** before you can charge your first dollar. 
 
 ### The x402 Way (Simple)
 
-```http
-HTTP/1.1 402 Payment Required
-Content-Type: application/json
-
-{
-  "x402-version": 1,
-  "x402-facilitator": "obul",
-  "x402-payment": {
-    "scheme": "exact",
-    "required-amount": "1000000",
-    "token": "0x..."
-  }
-}
+```
+1. Client Request
+   │
+   ▼
+2. Server Responds 402
+   │   └── "Payment required: 0.05 USDC"
+   ▼
+3. Client Signs Payment
+   │   └── Creates signed payment payload
+   ▼
+4. Client Retries with Payment
+   │   └── X-Payment: <signed_payload>
+   ▼
+5. Server Verifies & Responds
+   └── "Payment accepted. Here's your data."
 ```
 
-Your API returns a 402. The client pays. The request goes through.
+- No redirects. 
+- No OAuth. 
+- No KYC. 
+- No user management. 
+- No billing infrastructure.
 
-**No KYC. No user management. No billing infrastructure.**
+**Just HTTP with payment.**
+
 
 ## What This Means for API Providers
 
@@ -52,7 +59,7 @@ Your API returns a 402. The client pays. The request goes through.
 | User management system | Just wallet addresses |
 | Invoice handling | Instant settlement |
 | Geographic restrictions | Global by default |
-| Minimum charges (~$0.50) | Microtransactions ($0.001) |
+| Minimum charges (~$5) | Microtransactions ($0.001) |
 
 **You build the API. x402 handles the money.**
 
@@ -73,9 +80,11 @@ Your API returns a 402. The client pays. The request goes through.
 x402 is great, but there's a catch: **you still need to manage crypto.**
 
 - Set up wallets
-- Hold tokens
-- Monitor gas prices
-- Handle private keys
+- On-ramp USDC (hold crypto)
+- Monitor balance on different chains
+- Manage secure signing with private keys
+- Install x402 libs in every framework you use
+- Handle updating x402 payment protocol
 
 This is where Obul comes in.
 
@@ -88,14 +97,14 @@ This is where Obul comes in.
 │  Your App                        Your App               │
 │     │                               │                   │
 │     ▼                               ▼                   │
-│  ┌─────────┐                   ┌─────────┐             │
-│  │ Wallet  │─── x402 ───▶      │  Obul   │─── x402 ──▶│
-│  │ Manager │   (complex)       │  Proxy  │   (simple) │
-│  └─────────┘                   └─────────┘             │
+│  ┌─────────┐                   ┌─────────┐              │
+│  │ Wallet  │─── x402 ───▶      │  Obul   │─── http ──▶  │
+│  │ Manager │   (complex)       │  Proxy  │   (simple)   │
+│  └─────────┘                   └─────────┘              │
 │     ▲                               ▲                   │
 │     │                               │                   │
 │  Private Keys                  Credit Card              │
-│  Gas Management                Dashboard                │
+│  x402 Management               Dashboard                │
 │  Token Balances                Spend Limits             │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -144,45 +153,5 @@ Services include:
 - **Storage** — Decentralized databases
 - **Identity** — Reputation, credentials
 
-## How x402 Works
-
-### The Payment Flow
-
-```
-1. Client Request
-   │
-   ▼
-2. Server Responds 402
-   │   └── "Payment required: 0.001 ETH"
-   ▼
-3. Client Signs Payment
-   │   └── Creates signed payment payload
-   ▼
-4. Client Retries with Payment
-   │   └── X-Payment: <signed_payload>
-   ▼
-5. Server Verifies & Responds
-   └── "Payment accepted. Here's your data."
-```
-
-No redirects. No OAuth. Just HTTP with payment.
-
-### Key Components
-
-| Component | Description |
-|-----------|-------------|
-| **Facilitator** | Service that processes payments (Obul, Coinbase, etc.) |
-| **Scheme** | Payment model: `exact`, `stream`, `subscription` |
-| **Network** | Blockchain for settlement (Base, Ethereum, etc.) |
-| **Token** | ERC-20 token or native asset for payment |
-
-## The Future
-
-x402 is evolving:
-
-- **Streaming payments** — Pay per second of compute
-- **Subscriptions** — Recurring access without Stripe
-- **Multi-chain** — Ethereum, Base, Polygon, Solana
-- **IETF standard** — Formal spec in progress
 
 **The vision:** Every API call is a payment. Every payment is an API call. No distinction.

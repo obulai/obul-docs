@@ -1,23 +1,23 @@
 ---
 title: What is Obul?
-description: One API key to access the entire x402 agent economy — no wallets, no gas, no complexity
+description: One API key to access the entire x402 agent economy 
 sidebar_position: 1
 ---
 
-**One API key. The entire x402 economy. Zero wallets.**
+### **One API key. The entire x402 economy. Zero wallets.**
 
-Obul is a proxy layer that lets you call any x402-enabled service with nothing more than an API key. We handle the payment proofs, gas management, and protocol negotiation automatically.
+Obul is a proxy layer that lets you call any x402-enabled service with nothing more than an API key. We handle the wallet management, user balances, and x402 protocol negotiation automatically.
 
 ## The Problem We Solve
 
-You're building an agent in Cursor or Bolt. You want to compose it with real infrastructure — compute, search, data APIs. You discover the best services run on x402 (70M+ agent-to-agent transactions already happening).
+You're building an agent in Cursor or Bolt. You want to compose it with real infrastructure — compute, search, data APIs. You discover the best services run on x402 (70M+ monthly transactions already happening).
 
 Then you hit the wall:
 
 - Set up a wallet
 - Manage private keys  
 - Figure out which network to bridge to
-- Monitor gas so your agent doesn't error out mid-task
+- Monitor balance so your agent doesn't error out mid-task
 - Worry about spending caps and security
 
 Three weeks later, your agent is still not shipped. Another one for the graveyard.
@@ -26,7 +26,7 @@ Three weeks later, your agent is still not shipped. Another one for the graveyar
 
 ```bash
 curl -H "X-Obul-Key: $OBUL_API_KEY" \
-  https://proxy.obul.ai/https/api.target-service.com/v1/analyze
+  https://proxy.obul.ai/proxy/https/api.target-service.com/v1/analyze
 ```
 
 That's it. Obul discovers the x402 requirements, attaches the payment proof, and forwards your request. You get the response. We track the charge in your dashboard. Your agent keeps running.
@@ -36,9 +36,9 @@ That's it. Obul discovers the x402 requirements, attaches the payment proof, and
 | Feature | What It Means |
 |---------|---------------|
 | **One API Key** | Access the entire x402 ecosystem |
-| **Zero Wallet Management** | No keys, no gas, no bridging |
+| **Zero Wallet Management** | No keys, no chains, no bridging |
 | **Scoped Keys** | Per-agent keys with spend limits |
-| **Fiat Dashboard** | Track spending in dollars, not ETH |
+| **Fiat Dashboard** | Track spending in dollars, not crypto |
 | **Kill Switches** | Revoke keys instantly if something goes wrong |
 
 ## How It Works
@@ -75,4 +75,4 @@ These agents need to pay without human intervention. Without wallet setup. Witho
 - Never worry about one going rogue and draining funds
 - Access the 70M+ transaction x402 economy with HTTP requests
 
-## The 70M+ Transaction Economy
+
