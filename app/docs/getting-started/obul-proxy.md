@@ -1,30 +1,30 @@
 ---
-title: Obul Gateway
-description: How to use the Obul Gateway to access x402-enabled APIs
+title: Obul Proxy
+description: How to use the Obul Proxy to access x402-enabled APIs
 sidebar_position: 3
 ---
 
-# Obul Gateway
+# Obul Proxy
 
-The Obul Gateway is the core service that handles authentication, payment, and request forwarding to x402-enabled APIs.
+The Obul Proxy is the core service that handles authentication, payment, and request forwarding to x402-enabled APIs.
 
 ## Base URL
 
 ```
-Production:   https://gateway.obul.ai
-Health Check: https://gateway.obul.ai/healthz
+Production:   https://proxy.obul.ai
+Health Check: https://proxy.obul.ai/healthz
 ```
 
 ## URL Structure
 
 ```
-https://gateway.obul.ai/gateway/https/api.example.com/v1/data
-\_____________________/ \_______/ \____________________/ \_/
-       Base URL          Path         Target Host       Path
+https://proxy.obul.ai/proxy/https/api.example.com/v1/data
+\_____________________/ \____/ \____________________/ \_/
+       Base URL          Scheme       Target Host      Path
 ```
 
-- **Base URL**: `https://gateway.obul.ai` (Obul Gateway)
-- **Path**: `/gateway/{scheme}/{host}{path}`
+- **Base URL**: `https://proxy.obul.ai` (Obul's proxy)
+- **Path**: `/proxy/{scheme}/{host}{path}`
 - **Scheme**: `https` or `http`
 - **Host**: The target API domain
 - **Path**: Full path including query parameters
@@ -43,7 +43,7 @@ X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ```bash
 curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-  "https://gateway.obul.ai/gateway/https/httpbin.org/get"
+  "https://proxy.obul.ai/proxy/https/httpbin.org/get"
 ```
 
 ### POST Request with JSON
@@ -53,17 +53,17 @@ curl -X POST \
   -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"test": "data"}' \
-  "https://gateway.obul.ai/gateway/https/httpbin.org/post"
+  "https://proxy.obul.ai/proxy/https/httpbin.org/post"
 ```
 
 :::tip No Request Changes Needed!
 
-When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's gateway — we handle the x402 payment negotiation automatically.
+When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's proxy — we handle the x402 payment negotiation automatically.
 :::
 
 ## How It Works
 
-When you make a request through the Obul Gateway:
+When you make a request through the Obul Proxy:
 
 1. **Authentication** — We validate your API key
 2. **Discovery** — We contact the target service and learn its x402 requirements
@@ -117,7 +117,7 @@ import requests
 import os
 
 OBUL_API_KEY = os.environ["OBUL_API_KEY"]
-OBUL_BASE_URL = "https://gateway.obul.ai/gateway/https"
+OBUL_BASE_URL = "https://proxy.obul.ai/proxy/https"
 
 def call_service(endpoint, method="GET", data=None):
     url = f"{OBUL_BASE_URL}/{endpoint}"
@@ -142,7 +142,7 @@ result = call_service("api.example.com/compute", method="POST", data={"input": "
 
 ```javascript
 const OBUL_API_KEY = process.env.OBUL_API_KEY;
-const OBUL_BASE = 'https://gateway.obul.ai/gateway/https';
+const OBUL_BASE = 'https://proxy.obul.ai/proxy/https';
 
 async function obulRequest(endpoint, options = {}) {
   const url = `${OBUL_BASE}/${endpoint}`;
@@ -169,10 +169,10 @@ const result = await obulRequest('api.example.com/data', {
 
 ## Health Check
 
-Check if the gateway is operational:
+Check if the proxy is operational:
 
 ```bash
-curl https://gateway.obul.ai/healthz
+curl https://proxy.obul.ai/healthz
 ```
 
 **Response:**

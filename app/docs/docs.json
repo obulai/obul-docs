@@ -21,9 +21,9 @@
           "file": "getting-started/api-key.md"
         },
         {
-          "label": "Obul Gateway",
-          "slug": "getting-started/obul-gateway",
-          "file": "getting-started/obul-gateway.md"
+          "label": "Obul Proxy",
+          "slug": "getting-started/obul-proxy",
+          "file": "getting-started/obul-proxy.md"
         }
       ]
     },

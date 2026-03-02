@@ -51,7 +51,7 @@ obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ```bash
 curl -H "X-Obul-Api-Key: obul_live_xxx" \
-  "https://gateway.obul.ai/gateway/https/api.example.com/v1/endpoint"
+  "https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint"
 ```
 
 ### Using Python
@@ -59,7 +59,7 @@ curl -H "X-Obul-Api-Key: obul_live_xxx" \
 ```python
 import requests
 
-url = "https://gateway.obul.ai/gateway/https/api.example.com/v1/endpoint"
+url = "https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint"
 headers = {
     "X-Obul-Api-Key": "obul_live_xxx"
 }
@@ -73,7 +73,7 @@ print(response.json())
 ```javascript
 const fetch = require('node-fetch');
 
-const url = 'https://gateway.obul.ai/gateway/https/api.example.com/v1/endpoint';
+const url = 'https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint';
 const headers = {
   'X-Obul-Api-Key': 'obul_live_xxx'
 };
@@ -105,7 +105,7 @@ You never see the x402 complexity. It's just HTTP.
 
 ## Next Steps
 
-- Learn more about the [Obul Gateway](/getting-started/obul-gateway)
+- Learn more about the [Obul Proxy](/getting-started/obul-proxy)
 - Explore the [API Marketplace](/resources/marketplace)
 - Check out our [Demos](/demos/showcase)
 
