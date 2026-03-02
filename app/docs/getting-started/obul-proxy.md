@@ -4,10 +4,6 @@ description: How to use the Obul Proxy to access x402-enabled APIs
 sidebar_position: 3
 ---
 
-# Obul Proxy
-
-The Obul Proxy is the core service that handles authentication, payment, and request forwarding to x402-enabled APIs.
-
 ## Base URL
 
 ```

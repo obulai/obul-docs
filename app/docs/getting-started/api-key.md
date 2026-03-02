@@ -4,9 +4,9 @@ description: How to create and manage your Obul API keys
 sidebar_position: 2
 ---
 
-# Get API Key
-
 To use Obul, you need an API key. This guide walks you through creating and managing your keys.
+
+<img src="./images/dashboard-apikeys.png" alt="Dashboard Overview" style="border: 1px solid #D2B26B; border-radius: 8px;" />
 
 ## Creating Your First API Key
 
@@ -31,9 +31,8 @@ You won't be charged immediately. Obul uses pay-as-you-go billing at the end of 
 1. Navigate to **API Keys** in the sidebar
 2. Click **Create New Key**
 3. Give your key a descriptive name (e.g., "Production Agent", "Development Testing")
-4. Set a spend limit (recommended for production)
-5. Click **Create**
-6. **Copy the key immediately** — you won't see it again
+4. Click **Create**
+5. **Copy the key immediately** — you won't see it again
 
 ```bash
 # Example API key format
@@ -42,43 +41,11 @@ obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ## Managing API Keys
 
-### Spend Limits
-
-Set spend limits to control costs:
-
-| Use Case | Recommended Limit |
-|----------|-------------------|
-| Development | $10-50/month |
-| Production | $100-500/month |
-| Enterprise | Custom |
-
-### Scoped Keys
-
-Create separate keys for different agents or environments:
-
-```bash
-# Agent 1 - Data processing
-obul_live_agent1_xxx
-
-# Agent 2 - Web scraping
-obul_live_agent2_xxx
-
-# Development testing
-obul_live_dev_xxx
-```
-
-This allows you to:
-- Track spending per agent
-- Revoke access individually
-- Set different spend limits
-
-### Revoking Keys
-
 If a key is compromised:
 
 1. Go to **API Keys** in dashboard
 2. Find the key
-3. Click **Revoke**
+3. Click **Delete** and confirm
 4. Create a new key to replace it
 
 :::warning

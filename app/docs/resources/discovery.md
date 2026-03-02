@@ -4,8 +4,6 @@ description: Discover x402-enabled APIs and services
 sidebar_position: 1
 ---
 
-# Discovery
-
 Discover x402-enabled APIs and services that work with Obul.
 
 Obul provides a curated discovery layer for the x402 economy — find, evaluate, and integrate pay-per-use APIs without managing wallets or crypto.

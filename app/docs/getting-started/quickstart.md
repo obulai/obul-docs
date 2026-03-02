@@ -4,8 +4,6 @@ description: Access the x402 economy in under 5 minutes — one API key, no wall
 sidebar_position: 1
 ---
 
-# Quickstart
-
 Obul is the **universal API gateway for the agent economy**. It proxies requests to x402-enabled APIs and handles payment automatically — no crypto wallet, no USDC, no gas fees. One `OBUL_API_KEY`, consolidated billing, scoped keys with spending caps. Pay-per-use access to any supported service.
 
 Get started in under 5 minutes.
@@ -106,7 +104,6 @@ You never see the x402 complexity. It's just HTTP.
 ## Next Steps
 
 - Learn more about the [Obul Proxy](/getting-started/obul-proxy)
-- Explore the [API Marketplace](/resources/marketplace)
 - Check out our [Demos](/demos/showcase)
 
 Need help? [support@obul.ai](mailto:support@obul.ai)

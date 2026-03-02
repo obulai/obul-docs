@@ -4,8 +4,6 @@ description: Obul plugins for Claude Code
 sidebar_position: 3
 ---
 
-# Claude Plugins
-
 Official Obul plugins for Claude Code provide curated skills backed by x402 services. Install once, access 50+ APIs with natural language commands.
 
 ## What is Obul for Claude?
