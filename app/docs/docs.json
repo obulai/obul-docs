@@ -8,6 +8,56 @@
   "llmsFullTxt": "/llms-full.txt",
   "sidebar": [
     {
+      "group": "Getting Started",
+      "items": [
+        {
+          "label": "Quickstart",
+          "slug": "getting-started/quickstart",
+          "file": "getting-started/quickstart.md"
+        },
+        {
+          "label": "Get API Key",
+          "slug": "getting-started/api-key",
+          "file": "getting-started/api-key.md"
+        },
+        {
+          "label": "Obul Proxy",
+          "slug": "getting-started/obul-proxy",
+          "file": "getting-started/obul-proxy.md"
+        }
+      ]
+    },
+    {
+      "group": "Resources",
+      "items": [
+        {
+          "label": "Discovery",
+          "slug": "resources/discovery",
+          "file": "resources/discovery.md"
+        },
+        {
+          "label": "API Marketplace",
+          "slug": "resources/marketplace",
+          "file": "resources/marketplace.md"
+        },
+        {
+          "label": "Claude Plugins",
+          "slug": "resources/claude-plugins",
+          "file": "resources/claude-plugins.md"
+        }
+      ]
+    },
+    {
+      "group": "Demos",
+      "items": [
+        {
+          "label": "Showcase",
+          "slug": "demos/showcase",
+          "file": "demos/showcase.md"
+        }
+      ]
+    },
+    {
       "group": "Core Concepts",
       "items": [
         {
@@ -24,54 +74,6 @@
           "label": "Obul vs x402",
           "slug": "core/obul-vs-x402",
           "file": "core/obul-vs-x402.md"
-        }
-      ]
-    },
-    {
-      "group": "Getting Started",
-      "items": [
-        {
-          "label": "Quickstart",
-          "slug": "getting-started/quickstart",
-          "file": "getting-started/quickstart.md"
-        },
-        {
-          "label": "Dashboard Guide",
-          "slug": "getting-started/dashboard",
-          "file": "getting-started/dashboard.md"
-        }
-      ]
-    },
-    {
-      "group": "Technical Reference",
-      "items": [
-        {
-          "label": "API Reference",
-          "slug": "reference/api",
-          "file": "reference/api.md"
-        }
-      ]
-    },
-    {
-      "group": "Other Products",
-      "items": [
-        {
-          "label": "Obul Gateway",
-          "slug": "products/obul-gateway",
-          "file": "products/obul-gateway.md",
-          "badge": "Coming Soon"
-        },
-        {
-          "label": "Obul Login",
-          "slug": "products/obul-ui",
-          "file": "products/obul-ui.md",
-          "badge": "Coming Soon"
-        },
-        {
-          "label": "Obul CLI",
-          "slug": "products/obul-cli",
-          "file": "products/obul-cli.md",
-          "badge": "Coming Soon"
         }
       ]
     },

@@ -1,8 +1,12 @@
 ---
-title: API Reference
-description: Complete reference for the Obul Proxy API
-sidebar_position: 1
+title: Obul Proxy
+description: How to use the Obul Proxy to access x402-enabled APIs
+sidebar_position: 3
 ---
+
+# Obul Proxy
+
+The Obul Proxy is the core service that handles authentication, payment, and request forwarding to x402-enabled APIs.
 
 ## Base URL
 
@@ -11,7 +15,7 @@ Production:   https://proxy.obul.ai
 Health Check: https://proxy.obul.ai/healthz
 ```
 
-## Understanding the URL Structure
+## URL Structure
 
 ```
 https://proxy.obul.ai/proxy/https/api.example.com/v1/data
@@ -25,7 +29,24 @@ https://proxy.obul.ai/proxy/https/api.example.com/v1/data
 - **Host**: The target API domain
 - **Path**: Full path including query parameters
 
-### Examples
+## Authentication
+
+All requests need your API key in the `X-Obul-Api-Key` header:
+
+```http
+X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+## Making Requests
+
+### Basic GET Request
+
+```bash
+curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+  "https://proxy.obul.ai/proxy/https/httpbin.org/get"
+```
+
+### POST Request with JSON
 
 ```bash
 curl -X POST \
@@ -40,56 +61,17 @@ curl -X POST \
 When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's proxy — we handle the x402 payment negotiation automatically.
 :::
 
-## Authentication
+## How It Works
 
-All requests need your API key in the `X-Obul-Api-Key` header:
+When you make a request through the Obul Proxy:
 
-```http
-X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
+1. **Authentication** — We validate your API key
+2. **Discovery** — We contact the target service and learn its x402 requirements
+3. **Payment** — We generate and attach the payment proof automatically
+4. **Forwarding** — Your request is forwarded with the proof attached
+5. **Response** — The service responds, you get the data
 
-## Headers
-
-### Required
-
-| Header | Value | Description |
-|--------|-------|-------------|
-| `X-Obul-Api-Key` | `obul_live_xxx` | Your API key |
-| `Content-Type` | `application/json` | Request format |
-
-
-## Endpoints
-
-### Health Check
-
-```http
-GET https://proxy.obul.ai/healthz
-```
-
-**Response:**
-```json
-{
-  "status": "healthy",
-  "version": "1.0.0",
-  "timestamp": "2025-02-24T15:45:00Z"
-}
-```
-
-### Proxy to Any Service
-
-Call any x402-enabled API through Obul:
-
-```bash
-# Call httpbin.org
-curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-  "https://proxy.obul.ai/proxy/https/httpbin.org/get"
-
-# Call any other service
-curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-  "https://proxy.obul.ai/proxy/https/api.example.com/v1/your-endpoint"
-```
-
-Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
+You never handle crypto, wallets, or x402 directly.
 
 ## Error Codes
 
@@ -108,21 +90,6 @@ Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
 | `502` | Bad Gateway | Target API error |
 | `503` | Service Unavailable | Obul temporarily down |
 
-### Error Format
-
-```json
-{
-  "error": {
-    "code": "invalid_api_key",
-    "message": "The provided API key is invalid",
-    "details": {
-      "key": "obul_live_xxx",
-      "reason": "Key has been revoked"
-    }
-  }
-}
-```
-
 ### Common Errors
 
 | Error Code | Cause | Solution |
@@ -135,32 +102,13 @@ Just prepend `https://proxy.obul.ai/proxy/` to any target URL — that's it!
 
 ## Rate Limits
 
-### Default Limits
-
 | Plan | Requests/min | Burst |
 |------|--------------|-------|
 | Free | 100 | 10 |
 | Pro | 10,000 | 100 |
 | Enterprise | Custom | Custom |
 
-
-## Using in Your Code
-
-### cURL Template
-
-```bash
-# GET request
-curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
-
-# POST request with JSON
-curl -X POST \
-     -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-     -H "Content-Type: application/json" \
-     -d '{"key": "value"}' \
-     "https://proxy.obul.ai/proxy/https/TARGET_HOST/PATH"
-```
-
+## Code Examples
 
 ### Python
 
@@ -219,3 +167,25 @@ const result = await obulRequest('api.example.com/data', {
 });
 ```
 
+## Health Check
+
+Check if the proxy is operational:
+
+```bash
+curl https://proxy.obul.ai/healthz
+```
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "version": "1.0.0",
+  "timestamp": "2025-02-24T15:45:00Z"
+}
+```
+
+## Next Steps
+
+- Explore the [API Marketplace](/resources/marketplace) to find services
+- Learn about [Discovery](/resources/discovery) to find new APIs
+- Check out [Claude Plugins](/resources/claude-plugins) for AI integration
