@@ -5,13 +5,15 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 import fs from 'fs'
 import { marked } from 'marked'
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 function escapeHtml(text: string): string {
   return text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
+    .replace(/'/g, '&#039;');
 }
 
 function parseFrontmatter(content: string): { data: Record<string, string>; content: string } {
@@ -207,11 +209,7 @@ function generateLlmFiles() {
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [
-    inspectAttr(), 
-    react(),
-    generateLlmFiles()
-  ],
+  plugins: [inspectAttr(), react(), generateLlmFiles(), cloudflare()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
