@@ -65,7 +65,6 @@ Available categories:
 | **security-risk** | orac, blackswan |
 | **lead-enrichment** | apollo, hunter, stableenrich, coresignal |
 | **weather-data** | precip |
-- `weather-data`
 
 ## Step 3: Get an Obul API Key
 
