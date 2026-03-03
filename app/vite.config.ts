@@ -122,6 +122,36 @@ function generateLlmFiles() {
       })
       console.log('Generated static HTML files for search indexing')
       
+      // Generate per-page LLM txt files
+      const llmsDir = path.join(distDir, 'llms')
+      if (!fs.existsSync(llmsDir)) {
+        fs.mkdirSync(llmsDir, { recursive: true })
+      }
+      
+      config.sidebar.forEach((group: any) => {
+        group.items.forEach((item: any) => {
+          const filePath = path.join(docsDir, item.file)
+          if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf-8')
+            const { data, content: body } = parseFrontmatter(content)
+            
+            // Create subdirectory if needed
+            const slugParts = item.slug.split('/')
+            const docLlmsDir = slugParts.length > 1 
+              ? path.join(llmsDir, slugParts.slice(0, -1).join('/'))
+              : llmsDir
+            if (!fs.existsSync(docLlmsDir)) {
+              fs.mkdirSync(docLlmsDir, { recursive: true })
+            }
+            
+            // Generate per-page LLM txt with frontmatter-stripped markdown
+            const llmTxt = `# ${data.title || item.label}\n\n${body}\n`
+            fs.writeFileSync(path.join(llmsDir, `${item.slug}.txt`), llmTxt)
+          }
+        })
+      })
+      console.log('Generated per-page LLM txt files')
+      
       // Generate llms.txt
       let llmsTxt = `# ${config.name}\n\n`
       llmsTxt += `> ${config.description}\n\n`
@@ -134,7 +164,7 @@ function generateLlmFiles() {
           if (fs.existsSync(filePath)) {
             const content = fs.readFileSync(filePath, 'utf-8')
             const { data } = parseFrontmatter(content)
-            llmsTxt += `- [${item.label}](${item.slug}): ${data.description || ''}\n`
+            llmsTxt += `- [${item.label}](/llms/${item.slug}.txt): ${data.description || ''}\n`
           }
         })
         llmsTxt += '\n'

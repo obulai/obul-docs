@@ -49,6 +49,7 @@ interface DocContent {
   title: string;
   description: string;
   content: string;
+  rawContent: string;
   sidebar_position?: number;
   status?: string;
 }
@@ -292,6 +293,7 @@ function loadDocs(): Record<string, DocContent> {
       title: data.title || 'Untitled',
       description: data.description || '',
       content: marked.parse(parseTipBlocks(body)) as string,
+      rawContent: body,
       sidebar_position: data.sidebar_position ? parseInt(data.sidebar_position) : undefined,
       status: data.status,
     };
@@ -500,7 +502,9 @@ function Header({
 }
 
 // Table of contents component
-function TableOfContents({ content }: { content: string }) {
+function TableOfContents({ content, slug, rawContent }: { content: string; slug: string; rawContent: string }) {
+  const [copied, setCopied] = useState(false);
+  
   const headings = useMemo(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
@@ -510,6 +514,12 @@ function TableOfContents({ content }: { content: string }) {
       text: h2.textContent?.replace('#', '').trim() || '',
     }));
   }, [content]);
+  
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(rawContent);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   
   return (
     <div className="hidden xl:block w-56 pr-4">
@@ -533,6 +543,38 @@ function TableOfContents({ content }: { content: string }) {
         ) : (
           <p className="text-sm text-muted-foreground/50">No sections</p>
         )}
+        
+        <div className="mt-6 pt-4 border-t border-border space-y-2">
+          <a
+            href={`/llms/${slug}.txt`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs text-obul-gold hover:text-obul-gold/80 font-medium transition-colors"
+          >
+            <FileText className="w-3 h-3" />
+            LLM txt
+          </a>
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-2 text-xs text-obul-gold hover:text-obul-gold/80 font-medium transition-colors"
+          >
+            {copied ? (
+              <>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Copied!
+              </>
+            ) : (
+              <>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                Copy markdown
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -689,7 +731,7 @@ function App() {
             
             {/* Table of contents */}
             {currentDoc && (
-              <TableOfContents content={currentDoc.content} />
+              <TableOfContents content={currentDoc.content} slug={currentSlug} rawContent={currentDoc.rawContent} />
             )}
           </main>
         </div>
