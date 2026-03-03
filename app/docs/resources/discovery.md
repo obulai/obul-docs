@@ -29,17 +29,17 @@ This installs the API Finder skill with four scripts:
 
 ## Browse by Category
 
-| Category | Use Cases |
-|----------|-----------|
-| **Infrastructure** | Proxy, authentication, file storage, media conversion, messaging |
-| **Web Scraping** | Extract data from any website reliably |
-| **Web Search** | AI-powered web search, SERP results, deep research |
-| **Social Media** | Query X, Farcaster, Reddit programmatically |
-| **Blockchain/DeFi** | Prices, wallet analysis, on-chain data |
-| **Image/Audio/Video** | Generate images, audio, video with AI |
-| **Security/Risk** | Audit contracts, assess risk |
-| **Lead Enrichment** | Find emails, phone numbers, company data |
-| **Weather Data** | Hyperlocal weather, forecasts, climate data |
+| Category | Use Cases | Examples |
+|----------|-----------|----------|
+| **Infrastructure** | Proxy, authentication, file storage, media conversion, messaging | obul-proxy, pinata, cnvrt.ing, didit |
+| **Web Scraping** | Extract data from any website reliably | firecrawl, browserbase, zyte, minifetch |
+| **Web Search** | AI-powered web search, SERP results, deep research | perplexity, tavily, jina, exa |
+| **Social Media** | Query X, Farcaster, Reddit programmatically | tweetx402, neynar, reddit |
+| **Blockchain/DeFi** | Prices, wallet analysis, on-chain data | coingecko, zapper, heyelsa, dome |
+| **Image/Audio/Video** | Generate images, audio, video with AI | freepik, genbase, tavus, aibeats |
+| **Security/Risk** | Audit contracts, assess risk | orac, blackswan |
+| **Lead Enrichment** | Find emails, phone numbers, company data | apollo, hunter, stableenrich, coresignal |
+| **Weather Data** | Hyperlocal weather, forecasts, climate data | precip |
 
 
 See the full catalog in the [API Marketplace Github](https://github.com/obulai/obul-apis).

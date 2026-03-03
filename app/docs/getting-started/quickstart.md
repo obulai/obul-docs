@@ -54,14 +54,17 @@ $ node skills/obul-api-finder/scripts/list.js "utilities"
 
 Available categories:
 
-- `infrastructure`
-- `web-scraping`
-- `web-search`
-- `social-media`
-- `blockchain-defi`
-- `image-audio-video`
-- `security-risk`
-- `lead-enrichment`
+| Category | Examples |
+|----------|----------|
+| **infrastructure** | obul-proxy, pinata, cnvrt.ing, didit |
+| **web-scraping** | firecrawl, browserbase, zyte, minifetch |
+| **web-search** | perplexity, tavily, jina, exa |
+| **social-media** | tweetx402, neynar, reddit |
+| **blockchain-defi** | coingecko, zapper, heyelsa, dome |
+| **image-audio-video** | freepik, genbase, tavus, aibeats |
+| **security-risk** | orac, blackswan |
+| **lead-enrichment** | apollo, hunter, stableenrich, coresignal |
+| **weather-data** | precip |
 - `weather-data`
 
 ## Step 3: Get an Obul API Key
