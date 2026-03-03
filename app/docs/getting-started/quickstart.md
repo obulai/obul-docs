@@ -49,7 +49,7 @@ $ node skills/obul-api-finder/scripts/search.js "timezone"
 Or browse by category:
 
 ```bash
-$ node skills/obul-api-finder/scripts/list.js "utilities"
+$ node skills/obul-api-finder/scripts/list.js "infrastructure"
 ```
 
 Available categories:
