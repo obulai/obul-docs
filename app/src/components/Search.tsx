@@ -48,8 +48,8 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
       let pagefind = window.pagefind;
       if (!pagefind) {
         try {
-          // @ts-expect-error - pagefind is loaded dynamically from build output
-          pagefind = await import('/pagefind/pagefind.js');
+          const pagefindUrl = `${window.location.origin}/pagefind/pagefind.js`;
+          pagefind = await import(/* @vite-ignore */ pagefindUrl);
           window.pagefind = pagefind;
         } catch (err) {
           setError('Search not available in development. Run npm run build first.');
