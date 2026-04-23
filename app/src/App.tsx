@@ -352,9 +352,9 @@ function Sidebar({
         {/* Logo */}
         <div className="p-4 border-b border-border">
           <a href="/" className="flex items-center gap-3">
-            <img src="/obul-logo.png" alt="Polymer Pay" className="h-8 w-auto" />
+            <img src="/polymer-logo.png" alt="Polymer Pay" className="h-8 w-8 invert" />
+            <span className="text-lg font-semibold tracking-tight text-foreground">Polymer Pay</span>
           </a>
-          <p className="text-xs text-muted-foreground mt-1">Documentation</p>
         </div>
         
         {/* Navigation */}
