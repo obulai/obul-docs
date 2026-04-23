@@ -1,9 +1,9 @@
 {
-  "name": "Obul Documentation",
+  "name": "Polymer Pay Documentation",
   "description": "One API key. Infinite agents.",
   "logo": "/obul-logo.png",
   "favicon": "/obul-logo-black.jpeg",
-  "baseUrl": "https://docs.obul.ai",
+  "baseUrl": "https://pay.polymerlabs.org/",
   "llmsTxt": "/llms.txt",
   "llmsFullTxt": "/llms-full.txt",
   "sidebar": [
@@ -21,9 +21,9 @@
           "file": "getting-started/api-key.md"
         },
         {
-          "label": "Obul Proxy",
-          "slug": "getting-started/obul-proxy",
-          "file": "getting-started/obul-proxy.md"
+          "label": "Polymer Pay Proxy",
+          "slug": "getting-started/polymer-pay-proxy",
+          "file": "getting-started/polymer-pay-proxy.md"
         },
         {
           "label": "Key Control & Limits",
@@ -61,9 +61,9 @@
       "group": "Core Concepts",
       "items": [
         {
-          "label": "What is Obul?",
-          "slug": "core/what-is-obul",
-          "file": "core/what-is-obul.md"
+          "label": "What is Polymer Pay?",
+          "slug": "core/what-is-polymer-pay",
+          "file": "core/what-is-polymer-pay.md"
         },
         {
           "label": "What is x402?",
@@ -71,9 +71,9 @@
           "file": "core/x402-primer.md"
         },
         {
-          "label": "Obul vs x402",
-          "slug": "core/obul-vs-x402",
-          "file": "core/obul-vs-x402.md"
+          "label": "Polymer Pay vs x402",
+          "slug": "core/polymer-pay-vs-x402",
+          "file": "core/polymer-pay-vs-x402.md"
         }
       ]
     },
@@ -92,17 +92,12 @@
     "links": [
       {
         "label": "Dashboard",
-        "href": "https://my.obul.ai"
+        "href": "https://my.pay.polymerlabs.org/dashboard/api-keys"
       },
       {
         "label": "Proxy",
-        "href": "https://proxy.obul.ai"
+        "href": "https://pay.polymerlabs.org"
       }
-    ],
-    "social": {
-      "discord": "https://discord.gg/obul",
-      "twitter": "https://twitter.com/obulai",
-      "github": "https://github.com/obulai"
-    }
+    ]
   }
 }

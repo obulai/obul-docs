@@ -48,8 +48,8 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Obul custom colors
-        obul: {
+        // Polymer Pay custom colors
+        polymer: {
           gold: "#D2B26B",
           "gold-light": "#E5C97B",
           "gold-dark": "#B8A050",

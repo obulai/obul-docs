@@ -1,10 +1,10 @@
 ---
 title: Get API Key
-description: How to create and manage your Obul API keys
+description: How to create and manage your Polymer Pay API keys
 sidebar_position: 2
 ---
 
-To use Obul, you need an API key. This guide walks you through creating and managing your keys.
+To use Polymer Pay, you need an API key. This guide walks you through creating and managing your keys.
 
 <img src="./images/dashboard-apikeys.png" alt="Dashboard Overview" style="border: 1px solid #D2B26B; border-radius: 8px;" />
 
@@ -12,7 +12,7 @@ To use Obul, you need an API key. This guide walks you through creating and mana
 
 ### 1. Sign Up
 
-Go to [my.obul.ai](https://my.obul.ai) and create an account using email or GitHub.
+Go to [my.pay.polymerlabs.org/dashboard/api-keys](https://my.pay.polymerlabs.org/dashboard/api-keys) and create an account using email or GitHub.
 
 ### 2. Add Payment Method
 
@@ -23,7 +23,7 @@ Before you can create API keys, you need to add a payment method:
 3. Enter your card details
 
 :::info
-You won't be charged immediately. Obul uses pay-as-you-go billing at the end of each month.
+You won't be charged immediately. Polymer Pay uses pay-as-you-go billing at the end of each month.
 :::
 
 ### 3. Generate API Key
@@ -36,7 +36,7 @@ You won't be charged immediately. Obul uses pay-as-you-go billing at the end of 
 
 ```bash
 # Example API key format
-obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+polymer_pay_live_139f82dc-aef7-4060-bbbf-c96e018e
 ```
 
 ## Managing API Keys
@@ -54,11 +54,11 @@ Revoked keys stop working immediately. Any agents using them will fail.
 
 ## Using Your API Key
 
-Include your API key in the `X-Obul-Api-Key` header:
+Include your API key in the `X-Polymer-Pay-Api-Key` header:
 
 ```bash
-curl -H "X-Obul-Api-Key: obul_live_xxx" \
-  "https://proxy.obul.ai/proxy/https/api.example.com/v1/endpoint"
+curl -H "X-Polymer-Pay-Api-Key: polymer_pay_live_xxx" \
+  "https://pay.polymerlabs.org/proxy/https/api.example.com/v1/endpoint"
 ```
 
 ## Security Best Practices
@@ -77,5 +77,3 @@ curl -H "X-Obul-Api-Key: obul_live_xxx" \
 | "Payment required" | Add a payment method in billing |
 | "Rate limit exceeded" | Wait or upgrade your plan |
 | Key not working | Check if it was revoked |
-
-Need help? Contact [support@obul.ai](mailto:support@obul.ai)

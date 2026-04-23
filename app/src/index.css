@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Obul Dark Theme */
+    /* Polymer Pay Dark Theme */
     --background: 0 0% 4%;
     --foreground: 0 0% 98%;
     --card: 0 0% 6%;
@@ -26,12 +26,12 @@
     --ring: 45 50% 55%;
     --radius: 0.5rem;
     
-    /* Obul Custom Colors */
-    --obul-gold: 45 50% 55%;
-    --obul-gold-light: 45 60% 65%;
-    --obul-gold-dark: 45 40% 45%;
-    --obul-grid: 0 0% 15%;
-    --obul-success: 142 76% 45%;
+    /* Polymer Pay Custom Colors */
+    --polymer-gold: 45 50% 55%;
+    --polymer-gold-light: 45 60% 65%;
+    --polymer-gold-dark: 45 40% 45%;
+    --polymer-grid: 0 0% 15%;
+    --polymer-success: 142 76% 45%;
     
     /* Sidebar */
     --sidebar-background: 0 0% 6%;
@@ -83,8 +83,8 @@
   /* Grid background pattern */
   .grid-pattern {
     background-image: 
-      linear-gradient(to right, hsl(var(--obul-grid) / 0.3) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--obul-grid) / 0.3) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--polymer-grid) / 0.3) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--polymer-grid) / 0.3) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   

@@ -1,6 +1,6 @@
 ---
 title: What is x402?
-description: The HTTP 402 Payment Required protocol — why developers love it and how Obul completes the picture
+description: The HTTP 402 Payment Required protocol — why developers love it and how Polymer Pay completes the picture
 sidebar_position: 2
 ---
 
@@ -75,7 +75,7 @@ Want to charge for your API?
 
 **Use infrastructure like you use electricity — pay for what you consume.**
 
-## The Current Gap (And How Obul Solves It)
+## The Current Gap (And How Polymer Pay Solves It)
 
 x402 is great, but there's a catch: **you still need to manage crypto.**
 
@@ -86,20 +86,20 @@ x402 is great, but there's a catch: **you still need to manage crypto.**
 - Install x402 libs in every framework you use
 - Handle updating x402 payment protocol
 
-This is where Obul comes in.
+This is where Polymer Pay comes in.
 
-### Obul Solves the Crypto Leg
+### Polymer Pay Solves the Crypto Leg
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Without Obul                    With Obul              │
+│  Without Polymer Pay                    With Polymer Pay              │
 │                                                         │
 │  Your App                        Your App               │
 │     │                               │                   │
 │     ▼                               ▼                   │
 │  ┌─────────┐                   ┌─────────┐              │
-│  │ Wallet  │─── x402 ───▶      │  Obul   │─── http ──▶  │
-│  │ Manager │   (complex)       │  Proxy  │   (simple)   │
+│  │ Wallet  │─── x402 ───▶      │ Polymer │─── http ──▶  │
+│  │ Manager │   (complex)       │  Pay    │   (simple)   │
 │  └─────────┘                   └─────────┘              │
 │     ▲                               ▲                   │
 │     │                               │                   │
@@ -109,21 +109,21 @@ This is where Obul comes in.
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Obul is the bridge:**
+**Polymer Pay is the bridge:**
 - You pay us with a credit card (fiat)
 - We handle the crypto/x402 part
 - You get simple HTTP requests
 
 ## The Full Picture (Coming Soon)
 
-Today, Obul solves the **consumer side** — making it easy to call x402 APIs without managing crypto.
+Today, Polymer Pay solves the **consumer side** — making it easy to call x402 APIs without managing crypto.
 
-Soon, **Obul Gateway** will solve the **provider side** too:
+Soon, **Polymer Pay Gateway** will solve the **provider side** too:
 
 ```
-Your API ──▶ Obul Gateway ──▶ x402 payments
-                │
-                └── No setup, no KYC, just deploy
+Your API ──▶ Polymer Pay Gateway ──▶ x402 payments
+                 │
+                 └── No setup, no KYC, just deploy
 ```
 
 With Gateway, you'll be able to:

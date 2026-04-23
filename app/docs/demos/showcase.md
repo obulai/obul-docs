@@ -1,6 +1,6 @@
 ---
 title: Demos Showcase
-description: Example projects and demos using Obul
+description: Example projects and demos using Polymer Pay
 sidebar_position: 1
 ---
 

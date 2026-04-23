@@ -234,7 +234,7 @@ export function SearchTrigger({ onClick }: SearchTriggerProps) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 w-full max-w-md px-4 py-2 bg-secondary rounded-md text-sm text-muted-foreground hover:text-foreground border border-border hover:border-obul-gold/50 transition-all"
+      className="flex items-center gap-2 w-full max-w-md px-4 py-2 bg-secondary rounded-md text-sm text-muted-foreground hover:text-foreground border border-border hover:border-polymer-gold/50 transition-all"
     >
       <Search className="w-4 h-4" />
       <span className="flex-1 text-left">Search documentation...</span>

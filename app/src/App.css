@@ -38,11 +38,11 @@
 }
 
 .prose a {
-  @apply text-obul-gold hover:text-obul-gold-light transition-colors underline underline-offset-4;
+  @apply text-polymer-gold hover:text-polymer-gold-light transition-colors underline underline-offset-4;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-obul-gold/50 pl-4 my-6 italic text-foreground/70 bg-secondary/30 py-3 pr-4 rounded-r-lg;
+  @apply border-l-4 border-polymer-gold/50 pl-4 my-6 italic text-foreground/70 bg-secondary/30 py-3 pr-4 rounded-r-lg;
 }
 
 .prose code {
@@ -91,12 +91,12 @@
 
 /* Custom checkbox styling for task lists */
 .prose input[type="checkbox"] {
-  @apply mr-2 accent-obul-gold;
+  @apply mr-2 accent-polymer-gold;
 }
 
 /* Status callout styling */
 .prose [class*="status"] {
-  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-obul-gold/10 text-obul-gold border border-obul-gold/30 my-4;
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-polymer-gold/10 text-polymer-gold border border-polymer-gold/30 my-4;
 }
 
 /* Line clamp utility */
@@ -123,10 +123,10 @@
 
 /* Focus styles */
 *:focus-visible {
-  @apply outline-none ring-2 ring-obul-gold/50 ring-offset-2 ring-offset-background;
+  @apply outline-none ring-2 ring-polymer-gold/50 ring-offset-2 ring-offset-background;
 }
 
 /* Selection styles */
 ::selection {
-  @apply bg-obul-gold/30 text-white;
+  @apply bg-polymer-gold/30 text-white;
 }
