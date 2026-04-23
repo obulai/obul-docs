@@ -15,7 +15,7 @@ Users can check out API Marketplace on pay.polymerlabs.org or by clicking on Dis
 Give your agent the ability to search, browse, and install any API in the Polymer Pay catalog.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/obulai/obul-apis/main/skills/polymer-pay-api-finder/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/polymerdao/pay-apis/main/skills/polymer-pay-api-finder/install.sh | bash
 ```
 
 This installs the API Finder skill with four scripts:
@@ -42,4 +42,4 @@ This installs the API Finder skill with four scripts:
 | **Weather Data** | Hyperlocal weather, forecasts, climate data | precip |
 
 
-See the full catalog in the [API Marketplace Github](https://github.com/obulai/obul-apis).
+See the full catalog in the [API Marketplace Github](https://github.com/polymerdao/pay-apis).
