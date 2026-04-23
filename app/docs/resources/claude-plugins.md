@@ -34,7 +34,7 @@ Polymer Pay is the universal API gateway for the agent economy. These plugins br
 Add the Polymer Pay plugin marketplace to Claude Code:
 
 ```bash
-claude plugin marketplace add https://github.com/obulai/obul-plugin.git
+claude plugin marketplace add https://github.com/polymerdao/pay-plugin.git
 ```
 
 Install all plugins:
