@@ -18,7 +18,7 @@ Get started in under 5 minutes.
 Give your agent the ability to search, browse, and install any API in the Polymer Pay catalog.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/obulai/obul-apis/main/skills/polymer-pay-api-finder/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/polymerdao/pay-apis/main/skills/polymer-pay-api-finder/install.sh | bash
 ```
 
 This installs the API Finder skill with four scripts:

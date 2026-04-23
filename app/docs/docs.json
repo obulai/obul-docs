@@ -1,8 +1,8 @@
 {
   "name": "Polymer Pay Documentation",
   "description": "One API key. Infinite agents.",
-  "logo": "/obul-logo.png",
-  "favicon": "/obul-logo-black.jpeg",
+  "logo": "/polymer-logo.png",
+  "favicon": "/polymer-logo.png",
   "baseUrl": "https://pay.polymerlabs.org/",
   "llmsTxt": "/llms.txt",
   "llmsFullTxt": "/llms-full.txt",
