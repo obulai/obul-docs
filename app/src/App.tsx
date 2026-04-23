@@ -13,9 +13,6 @@ import {
   Menu, 
   ChevronRight, 
   ExternalLink, 
-  Github, 
-  Twitter, 
-  MessageCircle,
   FileText,
   Bot,
 } from 'lucide-react';
@@ -41,7 +38,7 @@ interface DocsConfig {
   sidebar: SidebarGroup[];
   nav: {
     links: { label: string; href: string }[];
-    social: { discord: string; twitter: string; github: string };
+    social?: { discord: string; twitter: string; github: string };
   };
 }
 
@@ -218,7 +215,7 @@ function renderTokens(tokens: any[]): string {
 
 // Custom image rendering
 (renderer as any).image = ({ href, title, text }: { href: string; title?: string | null; text: string }) => {
-  return `<img src="${href}" alt="${text}" title="${title || ''}" class="max-w-full h-auto my-4 rounded-lg border border-obul-gold/30" />`;
+  return `<img src="${href}" alt="${text}" title="${title || ''}" class="max-w-full h-auto my-4 rounded-lg border border-polymer-gold/30" />`;
 };
 
 // Custom table rendering
@@ -254,7 +251,7 @@ function renderTokens(tokens: any[]): string {
 // Custom blockquote rendering
 (renderer as any).blockquote = ({ tokens }: { tokens: any[] }) => {
   const text = renderTokens(tokens);
-  return `<blockquote class="border-l-4 border-obul-gold/50 pl-4 my-4 italic text-foreground/70">${text}</blockquote>`;
+  return `<blockquote class="border-l-4 border-polymer-gold/50 pl-4 my-4 italic text-foreground/70">${text}</blockquote>`;
 };
 
 // Custom paragraph rendering
@@ -355,7 +352,7 @@ function Sidebar({
         {/* Logo */}
         <div className="p-4 border-b border-border">
           <a href="/" className="flex items-center gap-3">
-            <img src="/obul-logo.png" alt="Obul" className="h-8 w-auto" />
+            <img src="/obul-logo.png" alt="Polymer Pay" className="h-8 w-auto" />
           </a>
           <p className="text-xs text-muted-foreground mt-1">Documentation</p>
         </div>
@@ -381,7 +378,7 @@ function Sidebar({
                           w-full text-left px-3 py-2 rounded-md text-sm
                           transition-colors flex items-center justify-between
                           ${isActive 
-                            ? 'bg-obul-gold/10 text-obul-gold' 
+                            ? 'bg-polymer-gold/10 text-polymer-gold' 
                             : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
                           }
                         `}
@@ -401,35 +398,8 @@ function Sidebar({
         
         {/* Footer links */}
         <div className="p-4 border-t border-border space-y-3">
-          <div className="flex items-center gap-3">
-            <a 
-              href={config.nav.social.discord} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-obul-gold transition-colors"
-            >
-              <MessageCircle className="w-4 h-4" />
-            </a>
-            <a 
-              href={config.nav.social.twitter} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-obul-gold transition-colors"
-            >
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a 
-              href={config.nav.social.github} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-obul-gold transition-colors"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-          </div>
-          
           {/* LLM Links */}
-          <div className="pt-2 border-t border-border/50">
+          <div className="pt-2">
             <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
               <Bot className="w-3 h-3" />
               LLM-Friendly
@@ -473,7 +443,7 @@ function Header({
             <Menu className="w-5 h-5" />
           </button>
           
-          <span className="lg:hidden text-lg font-bold text-white tracking-wider">OBUL</span>
+          <span className="lg:hidden text-lg font-bold text-white tracking-wider">POLYMER PAY</span>
         </div>
         
         {/* Center: Search */}
@@ -489,7 +459,7 @@ function Header({
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1 text-sm text-foreground/70 hover:text-obul-gold transition-colors"
+              className="hidden sm:flex items-center gap-1 text-sm text-foreground/70 hover:text-polymer-gold transition-colors"
             >
               {link.label}
               <ExternalLink className="w-3 h-3" />
@@ -533,7 +503,7 @@ function TableOfContents({ content, slug, rawContent }: { content: string; slug:
               <li key={index}>
                 <a
                   href={`#${heading.id}`}
-                  className="text-sm text-foreground/60 hover:text-obul-gold transition-colors line-clamp-2"
+                  className="text-sm text-foreground/60 hover:text-polymer-gold transition-colors line-clamp-2"
                 >
                   {heading.text}
                 </a>
@@ -549,14 +519,14 @@ function TableOfContents({ content, slug, rawContent }: { content: string; slug:
             href={`/llms/${slug}.txt`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs text-obul-gold hover:text-obul-gold/80 font-medium transition-colors"
+            className="flex items-center gap-2 text-xs text-polymer-gold hover:text-polymer-gold/80 font-medium transition-colors"
           >
             <FileText className="w-3 h-3" />
             LLM txt
           </a>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 text-xs text-obul-gold hover:text-obul-gold/80 font-medium transition-colors"
+            className="flex items-center gap-2 text-xs text-polymer-gold hover:text-polymer-gold/80 font-medium transition-colors"
           >
             {copied ? (
               <>
@@ -701,24 +671,14 @@ function App() {
                   <div className="mt-16 pt-8 border-t border-border">
                     <div className="flex items-center justify-between">
                       <a
-                        href="https://my.obul.ai"
+                        href="https://my.pay.polymerlabs.org/dashboard/api-keys"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-obul-gold hover:text-obul-gold-light transition-colors"
+                        className="flex items-center gap-2 text-polymer-gold hover:text-polymer-gold-light transition-colors"
                       >
                         Go to Dashboard
                         <ChevronRight className="w-4 h-4" />
                       </a>
-                      
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span>Need help?</span>
-                        <a 
-                          href="mailto:support@obul.ai" 
-                          className="text-obul-gold hover:text-obul-gold-light transition-colors"
-                        >
-                          Contact Support
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </article>

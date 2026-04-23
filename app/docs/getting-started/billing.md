@@ -4,7 +4,7 @@ description: Manage your API keys, set spending limits, and monitor usage in you
 sidebar_position: 4
 ---
 
-The Obul Dashboard at [my.obul.ai](https://my.obul.ai) is your control center for accessing the x402 economy.
+The Polymer Pay Dashboard at [my.pay.polymerlabs.org/dashboard/api-keys](https://my.pay.polymerlabs.org/dashboard/api-keys) is your control center for accessing the x402 economy.
 
 ## Overview
 

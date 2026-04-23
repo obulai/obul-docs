@@ -1,25 +1,25 @@
 ---
-title: Obul Proxy
-description: How to use the Obul Proxy to access x402-enabled APIs
+title: Polymer Pay Proxy
+description: How to use the Polymer Pay Proxy to access x402-enabled APIs
 sidebar_position: 3
 ---
 
 ## Base URL
 
 ```
-Production:   https://proxy.obul.ai
-Health Check: https://proxy.obul.ai/healthz
+Production:   https://pay.polymerlabs.org
+Health Check: https://pay.polymerlabs.org/healthz
 ```
 
 ## URL Structure
 
 ```
-https://proxy.obul.ai/proxy/https/api.example.com/v1/data
+https://pay.polymerlabs.org/proxy/https/api.example.com/v1/data
 \_____________________/ \____/ \____________________/ \_/
        Base URL          Scheme       Target Host      Path
 ```
 
-- **Base URL**: `https://proxy.obul.ai` (Obul's proxy)
+- **Base URL**: `https://pay.polymerlabs.org` (Polymer Pay's proxy)
 - **Path**: `/proxy/{scheme}/{host}{path}`
 - **Scheme**: `https` or `http`
 - **Host**: The target API domain
@@ -27,10 +27,10 @@ https://proxy.obul.ai/proxy/https/api.example.com/v1/data
 
 ## Authentication
 
-All requests need your API key in the `X-Obul-Api-Key` header:
+All requests need your API key in the `X-Polymer-Pay-Api-Key` header:
 
 ```http
-X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+X-Polymer-Pay-Api-Key: polymer_pay_live_139f82dc-aef7-4060-bbbf-c96e018e
 ```
 
 ## Making Requests
@@ -38,28 +38,28 @@ X-Obul-Api-Key: obul_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ### Basic GET Request
 
 ```bash
-curl -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
-  "https://proxy.obul.ai/proxy/https/httpbin.org/get"
+curl -H "X-Polymer-Pay-Api-Key: ${POLYMER_PAY_API_KEY}" \
+  "https://pay.polymerlabs.org/proxy/https/httpbin.org/get"
 ```
 
 ### POST Request with JSON
 
 ```bash
 curl -X POST \
-  -H "X-Obul-Api-Key: ${OBUL_API_KEY}" \
+  -H "X-Polymer-Pay-Api-Key: ${POLYMER_PAY_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{"test": "data"}' \
-  "https://proxy.obul.ai/proxy/https/httpbin.org/post"
+  "https://pay.polymerlabs.org/proxy/https/httpbin.org/post"
 ```
 
 :::tip No Request Changes Needed!
 
-When using Obul, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Obul's proxy — we handle the x402 payment negotiation automatically.
+When using Polymer Pay, you don't need to change your existing request parameters or add any special handling. Just prefix your target URL with Polymer Pay's proxy — we handle the x402 payment negotiation automatically.
 :::
 
 ## How It Works
 
-When you make a request through the Obul Proxy:
+When you make a request through the Polymer Pay Proxy:
 
 1. **Authentication** — We validate your API key
 2. **Discovery** — We contact the target service and learn its x402 requirements
@@ -84,7 +84,7 @@ You never handle crypto, wallets, or x402 directly.
 | `429` | Too Many Requests | Rate limit exceeded |
 | `500` | Server Error | Internal error |
 | `502` | Bad Gateway | Target API error |
-| `503` | Service Unavailable | Obul temporarily down |
+| `503` | Service Unavailable | Polymer Pay temporarily down |
 
 ### Common Errors
 
@@ -112,13 +112,13 @@ You never handle crypto, wallets, or x402 directly.
 import requests
 import os
 
-OBUL_API_KEY = os.environ["OBUL_API_KEY"]
-OBUL_BASE_URL = "https://proxy.obul.ai/proxy/https"
+POLYMER_PAY_API_KEY = os.environ["POLYMER_PAY_API_KEY"]
+POLYMER_PAY_BASE_URL = "https://pay.polymerlabs.org/proxy/https"
 
 def call_service(endpoint, method="GET", data=None):
-    url = f"{OBUL_BASE_URL}/{endpoint}"
+    url = f"{POLYMER_PAY_BASE_URL}/{endpoint}"
     headers = {
-        "X-Obul-Api-Key": OBUL_API_KEY,
+        "X-Polymer-Pay-Api-Key": POLYMER_PAY_API_KEY,
         "Content-Type": "application/json"
     }
 
@@ -137,16 +137,16 @@ result = call_service("api.example.com/compute", method="POST", data={"input": "
 ### Node.js
 
 ```javascript
-const OBUL_API_KEY = process.env.OBUL_API_KEY;
-const OBUL_BASE = 'https://proxy.obul.ai/proxy/https';
+const POLYMER_PAY_API_KEY = process.env.POLYMER_PAY_API_KEY;
+const POLYMER_PAY_BASE = 'https://pay.polymerlabs.org/proxy/https';
 
-async function obulRequest(endpoint, options = {}) {
-  const url = `${OBUL_BASE}/${endpoint}`;
+async function polymerPayRequest(endpoint, options = {}) {
+  const url = `${POLYMER_PAY_BASE}/${endpoint}`;
 
   const response = await fetch(url, {
     method: options.method || 'GET',
     headers: {
-      'X-Obul-Api-Key': OBUL_API_KEY,
+      'X-Polymer-Pay-Api-Key': POLYMER_PAY_API_KEY,
       'Content-Type': 'application/json',
       ...options.headers
     },
@@ -157,7 +157,7 @@ async function obulRequest(endpoint, options = {}) {
 }
 
 // Usage
-const result = await obulRequest('api.example.com/data', {
+const result = await polymerPayRequest('api.example.com/data', {
   method: 'POST',
   body: { query: 'example' }
 });
@@ -168,7 +168,7 @@ const result = await obulRequest('api.example.com/data', {
 Check if the proxy is operational:
 
 ```bash
-curl https://proxy.obul.ai/healthz
+curl https://pay.polymerlabs.org/healthz
 ```
 
 **Response:**

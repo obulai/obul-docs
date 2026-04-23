@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **documentation website** for Obul - a platform providing unified payment infrastructure ("One API key. Infinite agents.") enabling AI agents to make payments via the x402 protocol. The docs site is built with Vite + React + TypeScript.
+This is a **documentation website** for Polymer Pay - a platform providing unified payment infrastructure ("One API key. Infinite agents.") enabling AI agents to make payments via the x402 protocol. The docs site is built with Vite + React + TypeScript.
 
 ## Common Commands
 
@@ -35,7 +35,7 @@ The documentation app follows a **static content approach**:
 - `/app/src/main.tsx` - React entry point
 - `/app/docs/docs.json` - Docs navigation configuration
 - `/app/vite.config.ts` - Vite build configuration
-- `/app/tailwind.config.js` - Tailwind with custom OBUL theme colors
+- `/app/tailwind.config.js` - Tailwind with custom Polymer Pay theme colors
 
 ### Adding New Documentation
 

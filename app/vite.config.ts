@@ -68,7 +68,7 @@ function generateHtmlForDoc(title: string, content: string, _slug: string): stri
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeHtml(title)} - Obul Docs</title>
+  <title>${escapeHtml(title)} - Polymer Pay Docs</title>
   <meta name="description" content="${escapeHtml(title)}">
   <link rel="stylesheet" href="/assets/index-Dsf80kRg.css">
 </head>
@@ -180,7 +180,7 @@ function generateLlmFiles() {
       
       // Generate llms-full.txt
       let llmsFullTxt = `# ${config.name} - Full Knowledge Base\n\n`
-      llmsFullTxt += `This document contains the complete Obul documentation for LLM consumption.\n\n`
+      llmsFullTxt += `This document contains the complete Polymer Pay documentation for LLM consumption.\n\n`
       llmsFullTxt += `---\n\n`
       
       config.sidebar.forEach((group: any) => {

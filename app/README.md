@@ -1,6 +1,6 @@
-# Obul Documentation Site
+# Polymer Pay Documentation Site
 
-A Vite + React + TypeScript documentation website for Obul - a unified payment infrastructure for AI agents.
+A Vite + React + TypeScript documentation website for Polymer Pay - a unified payment infrastructure for AI agents.
 
 ## Quick Start
 
@@ -54,7 +54,7 @@ The sidebar is configured in `app/docs/docs.json`.
 
 ```json
 {
-  "name": "Obul Documentation",
+  "name": "Polymer Pay Documentation",
   "description": "One API key. Infinite agents.",
   "sidebar": [
     {
@@ -202,9 +202,9 @@ The project includes 50+ Radix UI components in `app/src/components/ui/`:
 
 ## Styling
 
-The project uses Tailwind CSS with a custom Obul theme:
+The project uses Tailwind CSS with a custom Polymer Pay theme:
 
-- Custom colors: `--obul-gold`, `--obul-gold-light`, `--obul-gold-dark`
+- Custom colors: `--polymer-gold`, `--polymer-gold-light`, `--polymer-gold-dark`
 - Dark theme by default
 - Grid background pattern
 - Custom prose styles for markdown content
